@@ -1,4 +1,3 @@
-import ComponentLines from "./components/ComponentLines";
 import Navbar from "./components/Navbar";
 import SkillLabel from "./components/SkillLabel";
 import Image from "next/image";
@@ -65,12 +64,12 @@ export default function Home() {
 
             {/* about me */}
             <div className="flex flex-col h-fit w-full px-[26px] text-2xl  mt-[128px] max-w-[1000px] font-sofia-sans-regular">
-                I've always been drawn to visual design — it's been a consistent
-                thread throughout my work. Most of my projects have involved
-                shaping user-facing interfaces, where I blend aesthetic clarity
-                with functional thinking. I'm comfortable working across
-                multiple languages and tools, and I'm always learning something
-                new to push my skills further.
+                I&apos;ve always been drawn to visual design — it&apos;s been a
+                consistent thread throughout my work. Most of my projects have
+                involved shaping user-facing interfaces, where I blend aesthetic
+                clarity with functional thinking. I&apos;m comfortable working
+                across multiple languages and tools, and I&apos;m always
+                learning something new to push my skills further.
             </div>
 
             {/* Tech stack */}
@@ -184,22 +183,22 @@ export default function Home() {
                     piece of code has never been my goal. Over time,
                 </span>
                 <span className="ms-2 font-sofia-sans-medium">
-                    I've learned that being practical means writing code that
-                    delivers robust functionality and designing visuals that are
-                    meaningful
+                    I&apos;ve learned that being practical means writing code
+                    that delivers robust functionality and designing visuals
+                    that are meaningful
                 </span>
                 <span className="opacity-50">
-                    —not just aesthetically pleasing. That's where the real
+                    —not just aesthetically pleasing. That&apos;s where the real
                     value lies.
                 </span>
             </div>
 
             {/* Contact */}
             <div className="flex flex-col h-fit w-full px-[26px] text-2xl mt-[128px] uppercase font-sofia-sans-medium">
-                Let's Connect
+                Let&apos;s Connect
             </div>
             <p className="flex flex-col h-fit w-full px-[26px] text-2xl mt-[26px] max-w-[1000px] font-sofia-sans-regular    ">
-                I'm always looking for new opportunities to collaborate and
+                I&apos;m always looking for new opportunities to collaborate and
                 learn. Feel free to reach out to me via email or connect on
                 LinkedIn.
             </p>
