@@ -263,7 +263,7 @@ export default function Home() {
             </div>
 
             {/* Footer */}
-            <div className="h-[80px] flex items-center justify-center">
+            <div className="h-[80px] flex items-center justify-center font-sofia-sans-regular opacity-50">
                 Copyright © 2025 Shubhdeep Sarkar
             </div>
         </div>
