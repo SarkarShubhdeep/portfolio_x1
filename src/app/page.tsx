@@ -1,22 +1,29 @@
 import Navbar from "./components/Navbar";
 import SkillLabel from "./components/SkillLabel";
+import ViewportSize from "./components/ViewportSize";
+import Paragraph from "./components/Paragraph";
+import Spacer from "./components/Spacer";
 import Image from "next/image";
 
 export default function Home() {
     return (
-        <div className="flex flex-col mx-[240px] min-w-[800px] overflow-x-hidden">
+        <div className="flex flex-col mx-0 md:mx-[80px] lg:mx-[240px] overflow-x-hidden">
             {/* <ComponentLines /> */}
+            <ViewportSize />
             <Navbar />
             {/* spacer  */}
-            <div className="min-h-[272px] w-full bg-red-900/0 " />
-            <div className="flex flex-col h-fit w-full px-[26px] text-2xl max-w-[1000px] font-sofia-sans-regular">
+            <div className="min-h-[120px] md:min-h-[272px] w-full bg-red-900/0" />
+            <Paragraph>
                 Frontend developer turning complex ideas into clean, responsive
                 interfaces with React, Next.js, and TypeScript. I love smooth
                 UIs, smart components, and the occasional well-timed animation.
-            </div>
+            </Paragraph>
+
+            {/* spacer */}
+            <Spacer />
 
             {/* horizontal scroll */}
-            <div className="flex flex-row w-screen overflow-x-scroll  mt-[72px] -mx-[240px] px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="flex flex-row w-screen overflow-x-scroll -mx-[240px] px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/* Project card */}
                 <div className="min-w-[500px] h-[500px] bg-foreground/10" />
                 <div className="min-h-full min-w-[26px]" />
@@ -63,14 +70,15 @@ export default function Home() {
             </div>
 
             {/* about me */}
-            <div className="flex flex-col h-fit w-full px-[26px] text-2xl  mt-[128px] max-w-[1000px] font-sofia-sans-regular">
+            <Spacer />
+            <Paragraph>
                 I&apos;ve always been drawn to visual design — it&apos;s been a
                 consistent thread throughout my work. Most of my projects have
                 involved shaping user-facing interfaces, where I blend aesthetic
                 clarity with functional thinking. I&apos;m comfortable working
                 across multiple languages and tools, and I&apos;m always
                 learning something new to push my skills further.
-            </div>
+            </Paragraph>
 
             {/* Tech stack */}
             <div className="flex flex-col h-fit w-full mt-[128px]">
@@ -197,11 +205,11 @@ export default function Home() {
             <div className="flex flex-col h-fit w-full px-[26px] text-2xl mt-[128px] uppercase font-sofia-sans-medium">
                 Let&apos;s Connect
             </div>
-            <p className="flex flex-col h-fit w-full px-[26px] text-2xl mt-[26px] max-w-[1000px] font-sofia-sans-regular    ">
+            <Paragraph>
                 I&apos;m always looking for new opportunities to collaborate and
                 learn. Feel free to reach out to me via email or connect on
                 LinkedIn.
-            </p>
+            </Paragraph>
 
             <div className="flex flex-row w-full gap-[26px] mt-[26px]  text-lg font-clash-grotesk-medium">
                 <button className="flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] py-[16px] h-[60px] hover:bg-accent hover:text-background transition-all duration-150">

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Navbar() {
     return (
-        <div className="backdrop-blur-lg flex justify-between items-center bg-foreground/10 w-full max-w-[800px]  h-[80px] fixed top-[120px] left-[240px] z-20 font-clash-grotesk-medium">
+        <div className="backdrop-blur-lg flex justify-between items-center bg-foreground/10 h-[80px] fixed z-20 font-clash-grotesk-medium w-full top-0 left-0 md:w-[800px] md:top-[120px] md:left-[240px]">
             <div className="group flex items-center flex-1 h-full pl-[26px] w-[160px] hover:bg-accent/80 transition-all duration-150">
                 <Image
                     src="/shubhdeep-sarkar-dark.svg"
