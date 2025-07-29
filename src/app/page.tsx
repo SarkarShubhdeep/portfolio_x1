@@ -7,6 +7,7 @@ import Image from "next/image";
 
 import { skillGroups } from "./data/skills";
 import FocusButton from "./components/FocusButton";
+import ProjectCard from "./components/ProjectCard";
 
 export default function Home() {
     return (
@@ -29,48 +30,79 @@ export default function Home() {
             <Spacer />
 
             {/* horizontal scroll */}
-            <div className="flex flex-row w-screen overflow-x-scroll -mx-0 md:-mx-[80px] lg:-mx-[240px] px-0 md:px-[80px] lg:px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="flex flex-row w-screen overflow-x-scroll gap-[26px] -mx-0 md:-mx-[80px] lg:-mx-[240px] px-0 md:px-[80px] lg:px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/* Project card */}
-                <div className="min-w-[500px] h-[500px] bg-foreground/10" />
-                <div className="min-h-full min-w-[26px]" />
-                <div className="min-w-[500px] h-[500px] bg-foreground/10" />
-                <div className="min-h-full min-w-[26px]" />
-                <div className="min-w-[500px] h-[500px] bg-foreground/10" />
-                <div className="min-h-full min-w-[26px]" />
-                <div className="min-w-[500px] h-[500px] bg-foreground/10" />
+                <ProjectCard
+                    title="Weekwise"
+                    description="Weekly planner with an intuitive interface and a focus on simplicity and ease of use."
+                    imageUrl="/card-temp-bg-pattern.png"
+                    liveUrl="https://www.google.com"
+                    githubUrl="https://github.com/shubhdeep-sarkar/weekwise"
+                    technologies={[
+                        "React",
+                        "Next.js",
+                        "TypeScript",
+                        "Supabase",
+                        "Tailwind CSS",
+                        "shadcn/ui",
+                        "Radix UI",
+                        "Motion",
+                    ]}
+                />
+
+                <ProjectCard
+                    title="Habitat"
+                    description="UX/UI Independent Study Project for residential property management."
+                    imageUrl="/card-temp-bg-pattern.png"
+                    liveUrl="https://www.google.com"
+                    technologies={[
+                        "UI/UX Design",
+                        "Figma",
+                        "Adobe Illustrator",
+                        "Wireframing",
+                        "Prototyping",
+                        "User Research",
+                        "User Persona & Journey",
+                    ]}
+                />
+
+                <ProjectCard
+                    title="Momemtum"
+                    description="Todo app with focus mode, and a dashboard to track your progress."
+                    imageUrl="/card-temp-bg-pattern.png"
+                    liveUrl="https://www.google.com"
+                    githubUrl="https://github.com/shubhdeep-sarkar/momentum"
+                    technologies={[
+                        "React",
+                        "Next.js",
+                        "TypeScript",
+                        "Supabase",
+                        "Tailwind CSS",
+                        "shadcn/ui",
+                        "Radix UI",
+                        "Motion",
+                        "Visx Charts",
+                    ]}
+                />
             </div>
             <div className="flex gap-[26px] mt-[26px]">
-                <button className="px-[26px] h-[60px] bg-foreground/10 hover:bg-accent transition-all duration-150 group">
+                <button className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group cursor-pointer">
                     <Image
                         src="/arrowleft-dark.svg"
                         alt="arrowleft"
                         width={20}
                         height={20}
-                        className="group-hover:hidden"
-                    />
-                    <Image
-                        src="/arrowleft-light.svg"
-                        alt="arrowleft"
-                        width={20}
-                        height={20}
-                        className="hidden group-hover:block"
+                        className=" group-hover:-translate-x-2 transition-all duration-150"
                     />
                 </button>
 
-                <button className="px-[26px] h-[60px] bg-foreground/10 hover:bg-accent transition-all duration-150 group">
+                <button className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group group cursor-pointer">
                     <Image
                         src="/arrowright-dark.svg"
                         alt="arrowright"
                         width={20}
                         height={20}
-                        className="group-hover:hidden"
-                    />
-                    <Image
-                        src="/arrowright-light.svg"
-                        alt="arrowright"
-                        width={20}
-                        height={20}
-                        className="hidden group-hover:block"
+                        className="group-hover:translate-x-2 transition-all duration-150"
                     />
                 </button>
             </div>
