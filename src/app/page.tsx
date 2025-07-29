@@ -1,3 +1,4 @@
+"use client";
 import Navbar from "./components/Navbar";
 import SkillLabel from "./components/SkillLabel";
 import ViewportSize from "./components/ViewportSize";
@@ -30,7 +31,7 @@ export default function Home() {
             <Spacer />
 
             {/* horizontal scroll */}
-            <div className="flex flex-row w-screen overflow-x-scroll gap-[26px] -mx-0 md:-mx-[80px] lg:-mx-[240px] px-0 md:px-[80px] lg:px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="project-scroll flex flex-row w-screen overflow-x-scroll gap-[26px] -mx-0 md:-mx-[80px] lg:-mx-[240px] px-0 md:px-[80px] lg:px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/* Project card */}
                 <ProjectCard
                     title="Weekwise"
@@ -85,24 +86,63 @@ export default function Home() {
                     ]}
                 />
             </div>
+            {/* Project Carousel Buttons */}
             <div className="flex gap-[26px] mt-[26px]">
-                <button className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group cursor-pointer">
+                <button
+                    onClick={() => {
+                        const scrollContainer =
+                            document.querySelector(".project-scroll");
+                        if (scrollContainer) {
+                            scrollContainer.scrollBy({
+                                left: -526,
+                                behavior: "smooth",
+                            });
+                        }
+                    }}
+                    className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group cursor-pointer hover:bg-accent hover:text-background"
+                >
                     <Image
                         src="/arrowleft-dark.svg"
                         alt="arrowleft"
                         width={20}
                         height={20}
-                        className=" group-hover:-translate-x-2 transition-all duration-150"
+                        className="group-hover:-translate-x-2 transition-all duration-150 group-hover:hidden"
+                    />
+                    <Image
+                        src="/arrowleft-light.svg"
+                        alt="arrowleft"
+                        width={20}
+                        height={20}
+                        className="hidden group-hover:block group-hover:-translate-x-2 transition-all duration-150"
                     />
                 </button>
 
-                <button className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group group cursor-pointer">
+                <button
+                    onClick={() => {
+                        const scrollContainer =
+                            document.querySelector(".project-scroll");
+                        if (scrollContainer) {
+                            scrollContainer.scrollBy({
+                                left: 526,
+                                behavior: "smooth",
+                            });
+                        }
+                    }}
+                    className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group cursor-pointer hover:bg-accent hover:text-background"
+                >
                     <Image
                         src="/arrowright-dark.svg"
                         alt="arrowright"
                         width={20}
                         height={20}
-                        className="group-hover:translate-x-2 transition-all duration-150"
+                        className="group-hover:translate-x-2 transition-all duration-150 group-hover:hidden"
+                    />
+                    <Image
+                        src="/arrowright-light.svg"
+                        alt="arrowright"
+                        width={20}
+                        height={20}
+                        className="hidden group-hover:block group-hover:translate-x-2 transition-all duration-150"
                     />
                 </button>
             </div>
