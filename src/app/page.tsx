@@ -5,6 +5,8 @@ import Paragraph from "./components/Paragraph";
 import Spacer from "./components/Spacer";
 import Image from "next/image";
 
+import { skillGroups } from "./data/skills";
+
 export default function Home() {
     return (
         <div className="flex flex-col mx-0 md:mx-[80px] lg:mx-[240px] overflow-x-hidden">
@@ -14,9 +16,12 @@ export default function Home() {
             {/* spacer  */}
             <div className="min-h-[120px] md:min-h-[272px] w-full bg-red-900/0" />
             <Paragraph>
-                Frontend developer turning complex ideas into clean, responsive
-                interfaces with React, Next.js, and TypeScript. I love smooth
-                UIs, smart components, and the occasional well-timed animation.
+                Frontend developer
+                <span className="opacity-50 ml-2">
+                    turning complex ideas into clean, responsive interfaces with
+                    React, Next.js, and TypeScript. I love smooth UIs, smart
+                    components, and the occasional well-timed animation.
+                </span>
             </Paragraph>
 
             {/* spacer */}
@@ -71,7 +76,7 @@ export default function Home() {
 
             {/* about me */}
             <Spacer />
-            <Paragraph>
+            <Paragraph className="opacity-50">
                 I&apos;ve always been drawn to visual design — it&apos;s been a
                 consistent thread throughout my work. Most of my projects have
                 involved shaping user-facing interfaces, where I blend aesthetic
@@ -81,105 +86,89 @@ export default function Home() {
             </Paragraph>
 
             {/* Tech stack */}
-            <div className="flex flex-col h-fit w-full mt-[128px]">
-                <div className="flex gap-[26px] w-full uppercase font-sofia-sans-medium">
+            <div className="grid lg:grid-cols-2 grid-cols-1 h-fit w-full mt-[128px] gap-[40px]">
+                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium">
                     <div className="flex-1 text-2xl px-[26px]">
-                        Techinical Skills
+                        {skillGroups[0].title}
                     </div>
-                    <div className="flex-1 text-2xl px-[26px] font-sofia-sans-medium">
-                        Tools, Practices, & workflows
+                    <div className="flex flex-wrap">
+                        {skillGroups[0].skills.map((skill) => (
+                            <div
+                                key={skill.name}
+                                className="px-[26px] py-[16px] transition-all duration-150"
+                                style={{
+                                    backgroundColor: `rgba(107, 114, 128, ${
+                                        skill.bgTransparency / 100
+                                    })`,
+                                    color: "inherit",
+                                }}
+                            >
+                                {skill.name}
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <div className="flex flex-row gap-[26px] w-full mt-[26px]">
-                    <div className="flex-1 flex flex-wrap text-lg">
-                        <SkillLabel bgTransparency={10} labelText="Next.js" />
-                        <SkillLabel bgTransparency={15} labelText="React.js" />
-                        <SkillLabel
-                            bgTransparency={20}
-                            labelText="Tailwind CSS"
-                        />
-                        <SkillLabel
-                            bgTransparency={10}
-                            labelText="React Native"
-                        />
-                        <SkillLabel bgTransparency={10} labelText="Node.js" />
-
-                        <SkillLabel bgTransparency={20} labelText="Python" />
-                        <SkillLabel bgTransparency={10} labelText="Next.js" />
-                        <SkillLabel bgTransparency={15} labelText="React.js" />
-                        <SkillLabel
-                            bgTransparency={20}
-                            labelText="Tailwind CSS"
-                        />
-                        <SkillLabel
-                            bgTransparency={10}
-                            labelText="React Native"
-                        />
-                        <SkillLabel bgTransparency={10} labelText="Node.js" />
-
-                        <SkillLabel bgTransparency={20} labelText="Python" />
-                        <SkillLabel bgTransparency={10} labelText="Next.js" />
-                        <SkillLabel bgTransparency={15} labelText="React.js" />
-                        <SkillLabel
-                            bgTransparency={20}
-                            labelText="Tailwind CSS"
-                        />
-                        <SkillLabel
-                            bgTransparency={10}
-                            labelText="React Native"
-                        />
-                        <SkillLabel bgTransparency={10} labelText="Node.js" />
-
-                        <SkillLabel bgTransparency={20} labelText="Python" />
+                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium">
+                    <div className="flex-1 text-2xl px-[26px]">
+                        {skillGroups[1].title}
                     </div>
-                    <div className="flex-1 flex flex-wrap  -l text-lg">
-                        <SkillLabel bgTransparency={10} labelText="Next.js" />
-                        <SkillLabel bgTransparency={15} labelText="React.js" />
-                        <SkillLabel
-                            bgTransparency={20}
-                            labelText="Tailwind CSS"
-                        />
-                        <SkillLabel
-                            bgTransparency={10}
-                            labelText="React Native"
-                        />
-                        <SkillLabel bgTransparency={10} labelText="Node.js" />
-
-                        <SkillLabel bgTransparency={20} labelText="Python" />
-                        <SkillLabel bgTransparency={10} labelText="Next.js" />
-                        <SkillLabel bgTransparency={15} labelText="React.js" />
-                        <SkillLabel
-                            bgTransparency={20}
-                            labelText="Tailwind CSS"
-                        />
-                        <SkillLabel
-                            bgTransparency={10}
-                            labelText="React Native"
-                        />
-                        <SkillLabel
-                            bgTransparency={20}
-                            labelText="Tailwind CSS"
-                        />
-                        <SkillLabel
-                            bgTransparency={10}
-                            labelText="React Native"
-                        />
-                        <SkillLabel bgTransparency={10} labelText="Node.js" />
-
-                        <SkillLabel bgTransparency={20} labelText="Python" />
-                        <SkillLabel bgTransparency={10} labelText="Next.js" />
-                        <SkillLabel bgTransparency={15} labelText="React.js" />
-                        <SkillLabel
-                            bgTransparency={20}
-                            labelText="Tailwind CSS"
-                        />
-                        <SkillLabel
-                            bgTransparency={10}
-                            labelText="React Native"
-                        />
-                        <SkillLabel bgTransparency={10} labelText="Node.js" />
-
-                        <SkillLabel bgTransparency={20} labelText="Python" />
+                    <div className="flex flex-wrap">
+                        {skillGroups[1].skills.map((skill) => (
+                            <div
+                                key={skill.name}
+                                className="px-[26px] py-[16px] transition-all duration-150"
+                                style={{
+                                    backgroundColor: `rgba(107, 114, 128, ${
+                                        skill.bgTransparency / 100
+                                    })`,
+                                    color: "inherit",
+                                }}
+                            >
+                                {skill.name}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium">
+                    <div className="flex-1 text-2xl px-[26px]">
+                        {skillGroups[2].title}
+                    </div>
+                    <div className="flex flex-wrap">
+                        {skillGroups[2].skills.map((skill) => (
+                            <div
+                                key={skill.name}
+                                className="px-[26px] py-[16px] transition-all duration-150"
+                                style={{
+                                    backgroundColor: `rgba(107, 114, 128, ${
+                                        skill.bgTransparency / 100
+                                    })`,
+                                    color: "inherit",
+                                }}
+                            >
+                                {skill.name}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium">
+                    <div className="flex-1 text-2xl px-[26px]">
+                        {skillGroups[3].title}
+                    </div>
+                    <div className="flex flex-wrap">
+                        {skillGroups[3].skills.map((skill) => (
+                            <div
+                                key={skill.name}
+                                className="px-[26px] py-[16px] transition-all duration-150"
+                                style={{
+                                    backgroundColor: `rgba(107, 114, 128, ${
+                                        skill.bgTransparency / 100
+                                    })`,
+                                    color: "inherit",
+                                }}
+                            >
+                                {skill.name}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -201,15 +190,19 @@ export default function Home() {
                 </span>
             </div>
 
+            <Spacer />
+
             {/* Contact */}
-            <div className="flex flex-col h-fit w-full px-[26px] text-2xl mt-[128px] uppercase font-sofia-sans-medium">
-                Let&apos;s Connect
+            <div className="flex flex-col gap-[18px]">
+                <Paragraph className="font-sofia-sans-medium">
+                    LET&apos;S CONNECT{" "}
+                </Paragraph>
+                <Paragraph className="opacity-50">
+                    I&apos;m always looking for new opportunities to collaborate
+                    and learn. Feel free to reach out to me via email or connect
+                    on LinkedIn.
+                </Paragraph>
             </div>
-            <Paragraph>
-                I&apos;m always looking for new opportunities to collaborate and
-                learn. Feel free to reach out to me via email or connect on
-                LinkedIn.
-            </Paragraph>
 
             <div className="flex flex-row w-full gap-[26px] mt-[26px]  text-lg font-clash-grotesk-medium">
                 <button className="flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] py-[16px] h-[60px] hover:bg-accent hover:text-background transition-all duration-150">

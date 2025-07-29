@@ -15,11 +15,13 @@ export default function SkillLabel({
 
     return (
         <div
-            className={`flex font-clash-grotesk-medium items-center justify-center h-[50px] px-[26px] ${
-                isHovered
-                    ? "bg-accent text-background"
-                    : `bg-foreground/${bgTransparency}`
-            } transition-all ${isHovered ? "duration-150" : "duration-500"}`}
+            className="flex font-clash-grotesk-medium items-center justify-center h-[50px] px-[26px] transition-all duration-150"
+            style={{
+                backgroundColor: isHovered
+                    ? "#f0754c"
+                    : `rgba(107, 114, 128, ${bgTransparency / 100})`,
+                color: isHovered ? "#1d1d1d" : "inherit",
+            }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
