@@ -9,7 +9,7 @@ import { skillGroups } from "./data/skills";
 
 export default function Home() {
     return (
-        <div className="flex flex-col mx-0 md:mx-[80px] lg:mx-[240px] overflow-x-hidden">
+        <div className="flex flex-col mx-0 md:mx-[80px] lg:mx-[240px] overflow-x-">
             {/* <ComponentLines /> */}
             <ViewportSize />
             <Navbar />
@@ -28,7 +28,7 @@ export default function Home() {
             <Spacer />
 
             {/* horizontal scroll */}
-            <div className="flex flex-row w-screen overflow-x-scroll -mx-[240px] px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="flex flex-row w-screen overflow-x-scroll -mx-0 md:-mx-[80px] lg:-mx-[240px] px-0 md:px-[80px] lg:px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/* Project card */}
                 <div className="min-w-[500px] h-[500px] bg-foreground/10" />
                 <div className="min-h-full min-w-[26px]" />
@@ -87,7 +87,7 @@ export default function Home() {
 
             {/* Tech stack */}
             <div className="grid lg:grid-cols-2 grid-cols-1 h-fit w-full mt-[128px] gap-[40px]">
-                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium">
+                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit">
                     <div className="flex-1 text-2xl px-[26px]">
                         {skillGroups[0].title}
                     </div>
@@ -108,7 +108,7 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium">
+                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit">
                     <div className="flex-1 text-2xl px-[26px]">
                         {skillGroups[1].title}
                     </div>
@@ -129,7 +129,7 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium">
+                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit">
                     <div className="flex-1 text-2xl px-[26px]">
                         {skillGroups[2].title}
                     </div>
@@ -150,7 +150,7 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium">
+                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit">
                     <div className="flex-1 text-2xl px-[26px]">
                         {skillGroups[3].title}
                     </div>
@@ -204,12 +204,12 @@ export default function Home() {
                 </Paragraph>
             </div>
 
-            <div className="flex flex-row w-full gap-[26px] mt-[26px]  text-lg font-clash-grotesk-medium">
+            <div className="flex flex-wrap w-full sm:gap-[26px] mt-[26px]  text-lg font-clash-grotesk-medium">
                 <button className="flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] py-[16px] h-[60px] hover:bg-accent hover:text-background transition-all duration-150">
                     sarkarshubhdeep2@gmail.com
                 </button>
                 {/* linkedin */}
-                <button className="group flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] py-[16px] hover:bg-accent transition-all duration-150">
+                <button className="group flex flex-row items-center justify-center gap-[26px] bg-foreground/5 px-[26px] h-[60px] hover:bg-accent transition-all duration-150">
                     <Image
                         src="/linkedinicon-dark.svg"
                         alt="linkedin"
@@ -226,7 +226,7 @@ export default function Home() {
                     />
                 </button>
                 {/* Github */}
-                <button className="group flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] py-[16px] hover:bg-accent transition-all duration-150">
+                <button className="group flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] h-[60px] hover:bg-accent transition-all duration-150">
                     <Image
                         src="/githubicon-dark.svg"
                         alt="linkedin"

@@ -21,20 +21,104 @@ export default function Navbar() {
                 <div className="flex flex-col items-center justify-center h-full relative">
                     <Link
                         href="#projects-section"
-                        className="w-full h-[60px] flex items-center text-xl justify-center bg-transparent hover:bg-accent hover:text-background transition-all duration-150 uppercase font-clash-grotesk-medium"
+                        className="w-full h-[60px] flex items-center text-xl justify-center bg-transparent hover:bg-accent hover:text-background transition-all duration-150 uppercase font-clash-grotesk-medium relative group"
                     >
+                        <Image
+                            src="/cornercap-topleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
+                        <Image
+                            src="/cornercap-topright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
                         Projects
                     </Link>
                     <Link
                         href="#about-section"
-                        className="w-full h-[60px] flex items-center text-xl justify-center bg-transparent hover:bg-accent hover:text-background transition-all duration-150 uppercase font-clash-grotesk-medium"
+                        className="w-full h-[60px] flex items-center text-xl justify-center bg-transparent hover:bg-accent hover:text-background transition-all duration-150 uppercase font-clash-grotesk-medium relative group"
                     >
+                        <Image
+                            src="/cornercap-topleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
+                        <Image
+                            src="/cornercap-topright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
                         About
                     </Link>
                     <Link
                         href="#contact-section"
-                        className="w-full h-[60px] flex items-center text-xl justify-center bg-transparent hover:bg-accent hover:text-background transition-all duration-150 uppercase font-clash-grotesk-medium"
+                        className="w-full h-[60px] flex items-center text-xl justify-center bg-transparent hover:bg-accent hover:text-background transition-all duration-150 uppercase font-clash-grotesk-medium relative group"
                     >
+                        <Image
+                            src="/cornercap-topleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
+                        <Image
+                            src="/cornercap-topright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        />
                         Contact
                     </Link>
                     <p className="text-sm py-[26px] text-center absolute bottom-0 w-full font-sofia-sans-regular">
@@ -63,20 +147,104 @@ export default function Navbar() {
                 <div className="hidden lg:flex items-center justify-center w-[480px] h-full">
                     <Link
                         href="#projects-section"
-                        className="h-full flex items-center justify-center w-[120px] uppercase hover:bg-accent/80 hover:text-background transition-all duration-150"
+                        className="h-full flex items-center justify-center w-[120px] uppercase hover:bg-accent/80 hover:text-background transition-all duration-150 relative group"
                     >
+                        <Image
+                            src="/cornercap-topleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 group-hover:translate-y-2 transition-all duration-150"
+                        />
+                        <Image
+                            src="/cornercap-topright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 group-hover:translate-y-2 transition-all duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 left-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 right-0 opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-150"
+                        />
                         Projects
                     </Link>
                     <Link
                         href="#about-section"
-                        className="h-full flex items-center justify-center w-[120px] uppercase hover:bg-accent/80 hover:text-background transition-all duration-150"
+                        className="h-full flex items-center justify-center w-[120px] uppercase hover:bg-accent/80 hover:text-background transition-all duration-150 relative group"
                     >
+                        <Image
+                            src="/cornercap-topleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 group-hover:translate-y-2 transition-all duration-150"
+                        />
+                        <Image
+                            src="/cornercap-topright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 group-hover:translate-y-2 transition-all duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 left-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 right-0 opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-150"
+                        />
                         About
                     </Link>
                     <Link
                         href="#contact-section"
-                        className="h-full flex items-center justify-center w-[120px] uppercase hover:bg-accent/80 hover:text-background transition-all duration-150"
+                        className="h-full flex items-center justify-center w-[120px] uppercase hover:bg-accent/80 hover:text-background transition-all duration-150 relative group"
                     >
+                        <Image
+                            src="/cornercap-topleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 group-hover:translate-y-2 transition-all duration-150"
+                        />
+                        <Image
+                            src="/cornercap-topright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute top-0 right-0 opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 group-hover:translate-y-2 transition-all duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomleft-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 left-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-150"
+                        />
+                        <Image
+                            src="/cornercap-bottomright-light.svg"
+                            alt="cornercap"
+                            width={20}
+                            height={20}
+                            className="absolute bottom-0 right-0 opacity-0 group-hover:opacity-100 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-150"
+                        />
                         Contact
                     </Link>
                 </div>
