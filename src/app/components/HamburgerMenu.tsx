@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 interface HamburgerMenuProps {
     isOpen: boolean;
     onToggle: () => void;

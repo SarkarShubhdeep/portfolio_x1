@@ -1,7 +1,6 @@
 "use client";
 import Navbar from "./components/Navbar";
-import SkillLabel from "./components/SkillLabel";
-import ViewportSize from "./components/ViewportSize";
+
 import Paragraph from "./components/Paragraph";
 import Spacer from "./components/Spacer";
 import Image from "next/image";
@@ -37,7 +36,7 @@ export default function Home() {
     return (
         <div className="flex flex-col mx-0 md:mx-[80px] lg:mx-[240px] overflow-x-">
             {/* <ComponentLines /> */}
-            <ViewportSize />
+            {/* <ViewportSize /> */}
             <Navbar />
             {/* spacer  */}
             <div className="min-h-[120px] md:min-h-[272px] w-full bg-red-900/0" />
