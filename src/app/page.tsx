@@ -5,12 +5,35 @@ import ViewportSize from "./components/ViewportSize";
 import Paragraph from "./components/Paragraph";
 import Spacer from "./components/Spacer";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 import { skillGroups } from "./data/skills";
 import FocusButton from "./components/FocusButton";
 import ProjectCard from "./components/ProjectCard";
 
 export default function Home() {
+    const [expandedGroups, setExpandedGroups] = useState<number[]>([]);
+    const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsLargeScreen(window.innerWidth >= 1024);
+        };
+
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
+
+        return () => window.removeEventListener("resize", checkScreenSize);
+    }, []);
+
+    const toggleGroup = (groupIndex: number) => {
+        setExpandedGroups((prev) =>
+            prev.includes(groupIndex)
+                ? prev.filter((i) => i !== groupIndex)
+                : [...prev, groupIndex]
+        );
+    };
+
     return (
         <div className="flex flex-col mx-0 md:mx-[80px] lg:mx-[240px] overflow-x-">
             {/* <ComponentLines /> */}
@@ -161,90 +184,51 @@ export default function Home() {
 
             {/* Tech stack */}
             <div className="grid lg:grid-cols-2 grid-cols-1 h-fit w-full mt-[128px] gap-[40px]">
-                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit">
-                    <div className="flex-1 text-2xl px-[26px]">
-                        {skillGroups[0].title}
-                    </div>
-                    <div className="flex flex-wrap">
-                        {skillGroups[0].skills.map((skill) => (
-                            <div
-                                key={skill.name}
-                                className="px-[26px] py-[16px] transition-all duration-150"
-                                style={{
-                                    backgroundColor: `rgba(107, 114, 128, ${
-                                        skill.bgTransparency / 100
-                                    })`,
-                                    color: "inherit",
-                                }}
+                {skillGroups.map((group, groupIndex) => (
+                    <div
+                        key={groupIndex}
+                        className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit"
+                    >
+                        <div className="flex-1 text-2xl px-[26px]">
+                            {group.title}
+                        </div>
+                        <div className="flex flex-wrap">
+                            {group.skills
+                                .slice(
+                                    0,
+                                    expandedGroups.includes(groupIndex) ||
+                                        isLargeScreen
+                                        ? group.skills.length
+                                        : 6
+                                )
+                                .map((skill) => (
+                                    <div
+                                        key={skill.name}
+                                        className="px-[26px] py-[16px] transition-all duration-150"
+                                        style={{
+                                            backgroundColor: `rgba(107, 114, 128, ${
+                                                skill.bgTransparency / 100
+                                            })`,
+                                            color: "inherit",
+                                        }}
+                                    >
+                                        {skill.name}
+                                    </div>
+                                ))}
+                        </div>
+                        {/* Show more/less button for md and smaller screens */}
+                        {group.skills.length > 6 && (
+                            <button
+                                onClick={() => toggleGroup(groupIndex)}
+                                className="px-[26px] py-[10px] w-fit  text-accent hover:text-white transition-all duration-150 text-sm font-sofia-sans-medium lg:hidden cursor-pointer"
                             >
-                                {skill.name}
-                            </div>
-                        ))}
+                                {expandedGroups.includes(groupIndex)
+                                    ? "Show Less"
+                                    : `Show ${group.skills.length - 6} More`}
+                            </button>
+                        )}
                     </div>
-                </div>
-                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit">
-                    <div className="flex-1 text-2xl px-[26px]">
-                        {skillGroups[1].title}
-                    </div>
-                    <div className="flex flex-wrap">
-                        {skillGroups[1].skills.map((skill) => (
-                            <div
-                                key={skill.name}
-                                className="px-[26px] py-[16px] transition-all duration-150"
-                                style={{
-                                    backgroundColor: `rgba(107, 114, 128, ${
-                                        skill.bgTransparency / 100
-                                    })`,
-                                    color: "inherit",
-                                }}
-                            >
-                                {skill.name}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit">
-                    <div className="flex-1 text-2xl px-[26px]">
-                        {skillGroups[2].title}
-                    </div>
-                    <div className="flex flex-wrap">
-                        {skillGroups[2].skills.map((skill) => (
-                            <div
-                                key={skill.name}
-                                className="px-[26px] py-[16px] transition-all duration-150"
-                                style={{
-                                    backgroundColor: `rgba(107, 114, 128, ${
-                                        skill.bgTransparency / 100
-                                    })`,
-                                    color: "inherit",
-                                }}
-                            >
-                                {skill.name}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit">
-                    <div className="flex-1 text-2xl px-[26px]">
-                        {skillGroups[3].title}
-                    </div>
-                    <div className="flex flex-wrap">
-                        {skillGroups[3].skills.map((skill) => (
-                            <div
-                                key={skill.name}
-                                className="px-[26px] py-[16px] transition-all duration-150"
-                                style={{
-                                    backgroundColor: `rgba(107, 114, 128, ${
-                                        skill.bgTransparency / 100
-                                    })`,
-                                    color: "inherit",
-                                }}
-                            >
-                                {skill.name}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                ))}
             </div>
 
             {/* Idealogy of the work */}
