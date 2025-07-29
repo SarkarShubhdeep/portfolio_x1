@@ -10,7 +10,7 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
     {
-        title: "Frontend/Web Development",
+        title: "Web Development",
         skills: [
             { name: "Next.js", bgTransparency: 10 },
             { name: "React.js", bgTransparency: 15 },

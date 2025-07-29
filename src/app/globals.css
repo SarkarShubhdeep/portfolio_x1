@@ -5,6 +5,7 @@
     --foreground: #eee;
 
     --accent: #f0754c;
+    scroll-behavior: smooth;
 }
 
 @theme inline {

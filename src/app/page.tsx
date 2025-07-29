@@ -6,6 +6,7 @@ import Spacer from "./components/Spacer";
 import Image from "next/image";
 
 import { skillGroups } from "./data/skills";
+import FocusButton from "./components/FocusButton";
 
 export default function Home() {
     return (
@@ -76,6 +77,7 @@ export default function Home() {
 
             {/* about me */}
             <Spacer />
+            <div id="about-section" />
             <Paragraph className="opacity-50">
                 I&apos;ve always been drawn to visual design — it&apos;s been a
                 consistent thread throughout my work. Most of my projects have
@@ -174,7 +176,7 @@ export default function Home() {
             </div>
 
             {/* Idealogy of the work */}
-            <div className="h-fit w-full px-[26px] text-3xl  mt-[128px] max-w-[1000px] font-sofia-sans-regular">
+            <div className="h-fit w-full px-[26px] text-3xl  mt-[128px] max-w-[800px] font-sofia-sans-regular ">
                 <span className="opacity-50">
                     Creating the most stunning design or writing the perfect
                     piece of code has never been my goal. Over time,
@@ -193,6 +195,7 @@ export default function Home() {
             <Spacer />
 
             {/* Contact */}
+            <div id="contact-section" />
             <div className="flex flex-col gap-[18px]">
                 <Paragraph className="font-sofia-sans-medium">
                     LET&apos;S CONNECT{" "}
@@ -205,11 +208,17 @@ export default function Home() {
             </div>
 
             <div className="flex flex-wrap w-full sm:gap-[26px] mt-[26px]  text-lg font-clash-grotesk-medium">
-                <button className="flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] py-[16px] h-[60px] hover:bg-accent hover:text-background transition-all duration-150">
+                <FocusButton
+                    href="mailto:sarkarshubhdeep2@gmail.com"
+                    className="flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] py-[16px] h-[60px] hover:bg-accent hover:text-background transition-all duration-150"
+                >
                     sarkarshubhdeep2@gmail.com
-                </button>
+                </FocusButton>
                 {/* linkedin */}
-                <button className="group flex flex-row items-center justify-center gap-[26px] bg-foreground/5 px-[26px] h-[60px] hover:bg-accent transition-all duration-150">
+                <FocusButton
+                    href="https://www.linkedin.com/in/shubhdeep-sarkar-0000000000/"
+                    className="group flex flex-row items-center justify-center gap-[26px] bg-foreground/5 px-[26px] h-[60px] hover:bg-accent transition-all duration-150"
+                >
                     <Image
                         src="/linkedinicon-dark.svg"
                         alt="linkedin"
@@ -224,9 +233,12 @@ export default function Home() {
                         height={30}
                         className="hidden group-hover:block"
                     />
-                </button>
+                </FocusButton>
                 {/* Github */}
-                <button className="group flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] h-[60px] hover:bg-accent transition-all duration-150">
+                <FocusButton
+                    href="https://github.com/shubhdeep-sarkar"
+                    className="group flex flex-row items-center justify-center gap-[26px] bg-foreground/10 px-[26px] h-[60px] hover:bg-accent transition-all duration-150"
+                >
                     <Image
                         src="/githubicon-dark.svg"
                         alt="linkedin"
@@ -241,7 +253,7 @@ export default function Home() {
                         height={30}
                         className="hidden group-hover:block"
                     />
-                </button>
+                </FocusButton>
             </div>
 
             {/* Logo Image */}
