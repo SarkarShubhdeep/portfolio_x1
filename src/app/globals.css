@@ -33,12 +33,12 @@
     --color-accent-950: #3f1818;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
         --background: #ffffff;
         --foreground: #171717;
     }
-}
+} */
 
 body {
     background: var(--background);
