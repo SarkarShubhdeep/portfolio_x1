@@ -47,7 +47,7 @@ export default function ProjectCard({
             <div className="absolute inset-0 bg-black/0 group-hover:bg-background/10 transition-all duration-300" />
 
             {/* Project Content - Hidden until hover */}
-            <div className="absolute inset-0 p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-md">
+            <div className="absolute inset-0 p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 bg-background/50 transition-all duration-300 backdrop-blur-xl">
                 {/* Title */}
                 <h3 className="text-2xl font-clash-grotesk-medium mb-3 text-white">
                     {title}

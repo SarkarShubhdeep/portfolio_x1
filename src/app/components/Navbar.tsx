@@ -4,12 +4,45 @@
 import Image from "next/image";
 import Link from "next/link";
 import HamburgerMenu from "./HamburgerMenu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FocusButton from "./FocusButton";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isLargeScreen, setIsLargeScreen] = useState(false);
+    const { scrollY } = useScroll();
+
+    // Only apply scroll transform for medium screens and larger
+    const y = useTransform(scrollY, [0, 100], [0, isLargeScreen ? -80 : 0]);
+
+    // Get document height for bottom detection
+    const [isAtBottom, setIsAtBottom] = useState(false);
+
+    // Check if we're at the bottom of the page
+    const checkIfAtBottom = () => {
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const isBottom = scrollTop + windowHeight >= documentHeight - 10; // 10px threshold
+        setIsAtBottom(isBottom);
+    };
+
+    // Check screen size and add scroll listener
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsLargeScreen(window.innerWidth >= 768); // md breakpoint
+        };
+
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
+        window.addEventListener("scroll", checkIfAtBottom);
+
+        return () => {
+            window.removeEventListener("resize", checkScreenSize);
+            window.removeEventListener("scroll", checkIfAtBottom);
+        };
+    }, []);
 
     return (
         <>
@@ -94,13 +127,16 @@ export default function Navbar() {
             </div>
 
             <motion.div
-                initial={{ y: -100, opacity: 0 }}
+                initial={{ y: -80, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
+                style={{ y }}
                 transition={{
                     ease: "easeIn",
                     duration: 0.3,
                 }}
-                className="backdrop-blur-lg flex justify-between items-center bg-foreground/10 h-[80px] fixed z-20 font-clash-grotesk-medium w-full top-0 left-0 md:max-w-[800px] md:top-[120px] md:left-[80px] lg:left-[240px] overflow-hidden"
+                className={`backdrop-blur-lg flex justify-between items-center h-[80px] fixed z-20 font-clash-grotesk-medium w-full top-0 left-0 md:max-w-[800px] md:top-[120px] md:left-[80px] lg:left-[240px] overflow-hidden ${
+                    isAtBottom ? "bg-background/60" : "bg-foreground/10"
+                }`}
             >
                 <motion.div
                     initial={{ x: -40, opacity: 0 }}
@@ -110,7 +146,7 @@ export default function Navbar() {
                         duration: 0.4,
                         delay: 0.4,
                     }}
-                    className="group flex items-center flex-1 h-full pl-[26px] w-[160px] hover:bg-accent/80"
+                    className="group flex items-center flex-1 h-full pl-[26px] w-[160px] hover:bg-accent"
                 >
                     <Image
                         src="/shubhdeep-sarkar-dark.svg"
@@ -185,7 +221,7 @@ export default function Navbar() {
                         <Link
                             href="/Shubhdeep_Sarkar_Resume.pdf"
                             target="_blank"
-                            className="group  flex items-center justify-end gap-2 h-full pr-[26px] w-[160px] hover:bg-accent/80 hover:text-background transition-all duration-150 uppercase"
+                            className="group  flex items-center justify-end gap-2 h-full pr-[26px] w-[160px] hover:bg-accent hover:text-background transition-all duration-150 uppercase"
                         >
                             Resume
                             <Image
