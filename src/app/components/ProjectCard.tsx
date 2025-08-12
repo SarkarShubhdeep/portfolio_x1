@@ -10,11 +10,13 @@ interface ProjectCardProps {
     liveUrl?: string;
     githubUrl?: string;
     className?: string;
+    primaryButtonText?: string;
 }
 
 export default function ProjectCard({
     title,
     description,
+    primaryButtonText = "Live Demo",
     technologies,
     imageUrl,
     liveUrl,
@@ -77,11 +79,11 @@ export default function ProjectCard({
                             href={liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-4 py-2 bg-accent text-background text-sm hover:bg-accent/80 transition-all duration-150 flex items-center"
+                            className="px-4 py-2 bg-accent text-foreground font-clash-grotesk-semibold text-sm hover:bg-accent/80 transition-all duration-150 flex items-center"
                         >
-                            Live Demo
+                            {primaryButtonText}
                             <Image
-                                src="/arrowupright-light.svg"
+                                src="/arrowupright-dark.svg"
                                 alt="arrowupright"
                                 width={16}
                                 height={20}

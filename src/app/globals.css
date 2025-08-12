@@ -3,7 +3,7 @@
 :root {
     --background: #1d1d1d;
     --foreground: #eee;
-
+    --background-dark: #171717;
     --accent: #d54b1c;
     scroll-behavior: smooth;
 }
@@ -11,6 +11,7 @@
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+    --color-background-dark: var(--background-dark);
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
     --font-clash-grotesk-regular: var(--font-clash-grotesk-regular);

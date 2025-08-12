@@ -10,6 +10,7 @@ import { skillGroups } from "./data/skills";
 import FocusButton from "./components/FocusButton";
 import ProjectCard from "./components/ProjectCard";
 import { motion, useScroll, useTransform } from "motion/react";
+import ProjectWeekwise from "./components/projects/ProjectWeekwise";
 
 export default function Home() {
     const [expandedGroups, setExpandedGroups] = useState<number[]>([]);
@@ -40,10 +41,11 @@ export default function Home() {
     };
 
     return (
-        <div className="flex flex-col mx-0 md:mx-[80px] lg:mx-[240px] overflow-x-">
+        <div className="flex flex-col mx-0 md:mx-[80px] lg:mx-[240px]">
             {/* <ComponentLines /> */}
             {/* <ViewportSize /> */}
             <Navbar />
+            <ProjectWeekwise />
             {/* spacer  */}
             <div className="min-h-[120px] md:min-h-[272px] w-full bg-red-900/0" />
             <motion.div
@@ -133,6 +135,7 @@ export default function Home() {
                             "User Research",
                             "User Persona & Journey",
                         ]}
+                        primaryButtonText="View Project"
                     />
                 </motion.div>
                 <motion.div
