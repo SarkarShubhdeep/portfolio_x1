@@ -11,6 +11,7 @@ interface ProjectCardProps {
     githubUrl?: string;
     className?: string;
     primaryButtonText?: string;
+    onClick?: () => void;
 }
 
 export default function ProjectCard({
@@ -22,10 +23,12 @@ export default function ProjectCard({
     liveUrl,
     githubUrl,
     className = "",
+    onClick,
 }: ProjectCardProps) {
     return (
         <div
-            className={`min-w-[500px] h-[500px] bg-foreground/10 relative overflow-hidden group ${className}`}
+            className={`min-w-[500px] h-[500px] bg-foreground/10 relative overflow-hidden group cursor-pointer ${className}`}
+            onClick={onClick}
         >
             {/* Project Image - Full Cover */}
             <div className="absolute inset-0 w-full h-full">

@@ -1,9 +1,16 @@
 import Image from "next/image";
 
-export default function ProjectsNav() {
+interface ProjectsNavProps {
+    onClose: () => void;
+}
+
+export default function ProjectsNav({ onClose }: ProjectsNavProps) {
     return (
         <div className="flex">
-            <button className="flex items-center gap-2 px-6 py-2 hover:bg-accent hover:text-background transition-all duration-150 group">
+            <button
+                onClick={onClose}
+                className="flex items-center gap-2 px-6 py-2 hover:bg-accent hover:text-background transition-all duration-150 group"
+            >
                 <Image
                     src="/arrowleft-dark.svg"
                     alt="Back to Home"
