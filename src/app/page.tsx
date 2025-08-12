@@ -10,14 +10,16 @@ import { skillGroups } from "./data/skills";
 import FocusButton from "./components/FocusButton";
 import ProjectCard from "./components/ProjectCard";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import ProjectWeekwise from "./components/projects/ProjectWeekwise";
+import ProjectOverlay, {
+    ProjectType,
+} from "./components/projects/ProjectOverlay";
 
 export default function Home() {
     const [expandedGroups, setExpandedGroups] = useState<number[]>([]);
     const [isLargeScreen, setIsLargeScreen] = useState(false);
-    const [activeProjectOverlay, setActiveProjectOverlay] = useState<
-        string | null
-    >(null);
+    const [activeProjectOverlay, setActiveProjectOverlay] =
+        useState<ProjectType | null>(null);
+    const [activeProject, setActiveProject] = useState<ProjectType>("weekwise");
     const { scrollYProgress } = useScroll();
 
     // Transform scroll progress to footer logo y position
@@ -49,6 +51,25 @@ export default function Home() {
         };
     }, [activeProjectOverlay]);
 
+    // Handle Escape key to close overlay
+    useEffect(() => {
+        const handleEscapeKey = (event: KeyboardEvent) => {
+            if (event.key === "Escape" && activeProjectOverlay) {
+                setActiveProjectOverlay(null);
+            }
+        };
+
+        // Add event listener when overlay is open
+        if (activeProjectOverlay) {
+            document.addEventListener("keydown", handleEscapeKey);
+        }
+
+        // Cleanup event listener
+        return () => {
+            document.removeEventListener("keydown", handleEscapeKey);
+        };
+    }, [activeProjectOverlay]);
+
     const toggleGroup = (groupIndex: number) => {
         setExpandedGroups((prev) =>
             prev.includes(groupIndex)
@@ -64,7 +85,7 @@ export default function Home() {
             <Navbar />
             <motion.div
                 animate={{
-                    scale: activeProjectOverlay ? 0.95 : 1,
+                    scale: activeProjectOverlay ? 0.99 : 1,
                     y: activeProjectOverlay ? 20 : 0,
                 }}
                 transition={{
@@ -138,7 +159,10 @@ export default function Home() {
                                 "Radix UI",
                                 "Motion",
                             ]}
-                            onClick={() => setActiveProjectOverlay("weekwise")}
+                            onClick={() => {
+                                setActiveProject("weekwise");
+                                setActiveProjectOverlay("weekwise");
+                            }}
                         />
                     </motion.div>
                     <motion.div
@@ -166,6 +190,10 @@ export default function Home() {
                                 "User Persona & Journey",
                             ]}
                             primaryButtonText="View Project"
+                            onClick={() => {
+                                setActiveProject("habitat");
+                                setActiveProjectOverlay("habitat");
+                            }}
                         />
                     </motion.div>
                     <motion.div
@@ -195,6 +223,10 @@ export default function Home() {
                                 "Motion",
                                 "Visx Charts",
                             ]}
+                            onClick={() => {
+                                setActiveProject("momentum");
+                                setActiveProjectOverlay("momentum");
+                            }}
                         />
                     </motion.div>
                 </div>
@@ -516,9 +548,14 @@ export default function Home() {
 
             {/* Project Overlays */}
             <AnimatePresence>
-                {activeProjectOverlay === "weekwise" && (
-                    <ProjectWeekwise
+                {activeProjectOverlay && (
+                    <ProjectOverlay
                         onClose={() => setActiveProjectOverlay(null)}
+                        activeProject={activeProject}
+                        onProjectChange={(project) => {
+                            setActiveProject(project);
+                            // Don't close overlay when switching projects
+                        }}
                     />
                 )}
             </AnimatePresence>
