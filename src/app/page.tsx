@@ -45,7 +45,6 @@ export default function Home() {
             {/* <ComponentLines /> */}
             {/* <ViewportSize /> */}
             <Navbar />
-            <ProjectWeekwise />
             {/* spacer  */}
             <div className="min-h-[120px] md:min-h-[272px] w-full bg-red-900/0" />
             <motion.div
