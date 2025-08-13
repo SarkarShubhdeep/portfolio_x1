@@ -161,7 +161,7 @@ export default function Home() {
                         <ProjectCard
                             title="Momentum"
                             description="Todo app with focus mode, and a dashboard to track your progress."
-                            imageUrl="/card-temp-bg-pattern.png"
+                            imageUrl="/projects-images/momentum/momentum-project-temp.png"
                             technologies={[
                                 "React",
                                 "Next.js",
@@ -176,6 +176,37 @@ export default function Home() {
                             primaryButtonText="View Project"
                             primaryOnClick={() => {
                                 setActiveProjectOverlay("momentum");
+                            }}
+                        />
+                    </motion.div>
+                    <motion.div
+                        initial={{ scale: 0.95, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                            ease: "easeInOut",
+                            duration: 0.4,
+                            delay: 0.9,
+                        }}
+                    >
+                        <ProjectCard
+                            title="Count"
+                            description="Todo app with focus mode, and a dashboard to track your progress."
+                            imageUrl="/projects-images/count/count-project-temp.png"
+                            technologies={[
+                                "React",
+                                "Next.js",
+                                "TypeScript",
+                                "Supabase",
+                                "Tailwind CSS",
+                                "shadcn/ui",
+                                "Radix UI",
+                                "Motion",
+                                "Visx Charts",
+                            ]}
+                            primaryButtonText="View Project"
+                            primaryOnClick={() => {
+                                setActiveProjectOverlay("count");
                             }}
                         />
                     </motion.div>
