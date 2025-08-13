@@ -9,17 +9,17 @@ import { useState, useEffect } from "react";
 import { skillGroups } from "./data/skills";
 import FocusButton from "./components/FocusButton";
 import ProjectCard from "./components/ProjectCard";
-import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
-import ProjectOverlay, {
-    ProjectType,
-} from "./components/projects/ProjectOverlay";
+import ProjectOverlay from "./components/ProjectOverlay";
+
+import { motion, useScroll, useTransform } from "motion/react";
 
 export default function Home() {
     const [expandedGroups, setExpandedGroups] = useState<number[]>([]);
     const [isLargeScreen, setIsLargeScreen] = useState(false);
-    const [activeProjectOverlay, setActiveProjectOverlay] =
-        useState<ProjectType | null>(null);
-    const [activeProject, setActiveProject] = useState<ProjectType>("weekwise");
+    const [activeProjectOverlay, setActiveProjectOverlay] = useState<
+        string | null
+    >(null);
+
     const { scrollYProgress } = useScroll();
 
     // Transform scroll progress to footer logo y position
@@ -37,39 +37,6 @@ export default function Home() {
         return () => window.removeEventListener("resize", checkScreenSize);
     }, []);
 
-    // Prevent background scrolling when overlay is open
-    useEffect(() => {
-        if (activeProjectOverlay) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
-        }
-
-        // Cleanup on unmount
-        return () => {
-            document.body.style.overflow = "unset";
-        };
-    }, [activeProjectOverlay]);
-
-    // Handle Escape key to close overlay
-    useEffect(() => {
-        const handleEscapeKey = (event: KeyboardEvent) => {
-            if (event.key === "Escape" && activeProjectOverlay) {
-                setActiveProjectOverlay(null);
-            }
-        };
-
-        // Add event listener when overlay is open
-        if (activeProjectOverlay) {
-            document.addEventListener("keydown", handleEscapeKey);
-        }
-
-        // Cleanup event listener
-        return () => {
-            document.removeEventListener("keydown", handleEscapeKey);
-        };
-    }, [activeProjectOverlay]);
-
     const toggleGroup = (groupIndex: number) => {
         setExpandedGroups((prev) =>
             prev.includes(groupIndex)
@@ -83,19 +50,7 @@ export default function Home() {
             {/* <ComponentLines /> */}
             {/* <ViewportSize /> */}
             <Navbar />
-            <motion.div
-                animate={{
-                    scale: activeProjectOverlay ? 0.99 : 1,
-                    y: activeProjectOverlay ? 20 : 0,
-                }}
-                transition={{
-                    type: "spring",
-                    damping: 25,
-                    stiffness: 300,
-                    duration: 0.4,
-                }}
-                className="flex flex-col"
-            >
+            <div className="flex flex-col">
                 {/* spacer  */}
                 <div className="min-h-[120px] md:min-h-[272px] w-full bg-red-900/0" />
                 <motion.div
@@ -146,9 +101,8 @@ export default function Home() {
                             title="Weekwise"
                             description="Weekly planner with an intuitive interface and a focus on simplicity and ease of use."
                             className=""
-                            imageUrl="/weekwise-thumbnail.png"
-                            liveUrl="https://www.google.com"
-                            githubUrl="https://github.com/shubhdeep-sarkar/weekwise"
+                            imageUrl="/projects-images/weekwise/weekwise-thumbnail.png"
+                            githubUrl="https://github.com/SarkarShubhdeep/weekwise_v2.git"
                             technologies={[
                                 "React",
                                 "Next.js",
@@ -159,8 +113,8 @@ export default function Home() {
                                 "Radix UI",
                                 "Motion",
                             ]}
-                            onClick={() => {
-                                setActiveProject("weekwise");
+                            primaryButtonText="View Project"
+                            primaryOnClick={() => {
                                 setActiveProjectOverlay("weekwise");
                             }}
                         />
@@ -178,8 +132,7 @@ export default function Home() {
                         <ProjectCard
                             title="Habitat"
                             description="UX/UI Independent Study Project for residential property management."
-                            imageUrl="/habitat-thumbnail.png"
-                            liveUrl="https://www.google.com"
+                            imageUrl="/projects-images/habitat/habitat-thumbnail.png"
                             technologies={[
                                 "UI/UX Design",
                                 "Figma",
@@ -190,8 +143,7 @@ export default function Home() {
                                 "User Persona & Journey",
                             ]}
                             primaryButtonText="View Project"
-                            onClick={() => {
-                                setActiveProject("habitat");
+                            primaryOnClick={() => {
                                 setActiveProjectOverlay("habitat");
                             }}
                         />
@@ -207,11 +159,9 @@ export default function Home() {
                         }}
                     >
                         <ProjectCard
-                            title="Momemtum"
+                            title="Momentum"
                             description="Todo app with focus mode, and a dashboard to track your progress."
                             imageUrl="/card-temp-bg-pattern.png"
-                            liveUrl="https://www.google.com"
-                            githubUrl="https://github.com/shubhdeep-sarkar/momentum"
                             technologies={[
                                 "React",
                                 "Next.js",
@@ -223,8 +173,8 @@ export default function Home() {
                                 "Motion",
                                 "Visx Charts",
                             ]}
-                            onClick={() => {
-                                setActiveProject("momentum");
+                            primaryButtonText="View Project"
+                            primaryOnClick={() => {
                                 setActiveProjectOverlay("momentum");
                             }}
                         />
@@ -544,21 +494,17 @@ export default function Home() {
                         Copyright © 2025 Shubhdeep Sarkar
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
-            {/* Project Overlays */}
-            <AnimatePresence>
-                {activeProjectOverlay && (
-                    <ProjectOverlay
-                        onClose={() => setActiveProjectOverlay(null)}
-                        activeProject={activeProject}
-                        onProjectChange={(project) => {
-                            setActiveProject(project);
-                            // Don't close overlay when switching projects
-                        }}
-                    />
-                )}
-            </AnimatePresence>
+            {/* Project Overlay */}
+            <ProjectOverlay
+                isOpen={activeProjectOverlay !== null}
+                onClose={() => setActiveProjectOverlay(null)}
+                currentProject={activeProjectOverlay || undefined}
+                onProjectChange={(project: string) =>
+                    setActiveProjectOverlay(project)
+                }
+            />
         </div>
     );
 }
