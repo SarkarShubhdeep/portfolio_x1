@@ -7,10 +7,14 @@ interface ProjectCardProps {
     description: string;
     technologies: string[];
     imageUrl?: string;
-    liveUrl?: string;
+
     githubUrl?: string;
     className?: string;
     primaryButtonText?: string;
+    primaryOnClick?: () => void;
+    secondaryButtonText?: string;
+    secondaryOnClick?: () => void;
+    onClick?: () => void;
 }
 
 export default function ProjectCard({
@@ -19,13 +23,18 @@ export default function ProjectCard({
     primaryButtonText = "Live Demo",
     technologies,
     imageUrl,
-    liveUrl,
+
     githubUrl,
     className = "",
+    primaryOnClick,
+    secondaryButtonText,
+    secondaryOnClick,
+    onClick,
 }: ProjectCardProps) {
     return (
         <div
-            className={`min-w-[500px] h-[500px] bg-foreground/10 relative overflow-hidden group ${className}`}
+            className={`min-w-[500px] h-[500px] bg-foreground/10 relative overflow-hidden group cursor-pointer ${className}`}
+            onClick={onClick}
         >
             {/* Project Image - Full Cover */}
             <div className="absolute inset-0 w-full h-full">
@@ -74,11 +83,12 @@ export default function ProjectCard({
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
-                    {liveUrl && (
-                        <a
-                            href={liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                    {primaryOnClick && (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                primaryOnClick();
+                            }}
                             className="px-4 py-2 bg-accent text-foreground font-clash-grotesk-semibold text-sm hover:bg-accent/80 transition-all duration-150 flex items-center"
                         >
                             {primaryButtonText}
@@ -89,7 +99,18 @@ export default function ProjectCard({
                                 height={20}
                                 className="ml-2"
                             />
-                        </a>
+                        </button>
+                    )}
+                    {secondaryOnClick && secondaryButtonText && (
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                secondaryOnClick();
+                            }}
+                            className="px-4 py-2 bg-white/20 text-white text-sm hover:bg-blue-600 transition-all duration-150 backdrop-blur-sm"
+                        >
+                            {secondaryButtonText}
+                        </button>
                     )}
                     {githubUrl && (
                         <a

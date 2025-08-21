@@ -9,12 +9,17 @@ import { useState, useEffect } from "react";
 import { skillGroups } from "./data/skills";
 import FocusButton from "./components/FocusButton";
 import ProjectCard from "./components/ProjectCard";
+import ProjectOverlay from "./components/ProjectOverlay";
+
 import { motion, useScroll, useTransform } from "motion/react";
-import ProjectWeekwise from "./components/projects/ProjectWeekwise";
 
 export default function Home() {
     const [expandedGroups, setExpandedGroups] = useState<number[]>([]);
     const [isLargeScreen, setIsLargeScreen] = useState(false);
+    const [activeProjectOverlay, setActiveProjectOverlay] = useState<
+        string | null
+    >(null);
+
     const { scrollYProgress } = useScroll();
 
     // Transform scroll progress to footer logo y position
@@ -45,366 +50,241 @@ export default function Home() {
             {/* <ComponentLines /> */}
             {/* <ViewportSize /> */}
             <Navbar />
-            <ProjectWeekwise />
-            {/* spacer  */}
-            <div className="min-h-[120px] md:min-h-[272px] w-full bg-red-900/0" />
-            <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{
-                    ease: "easeInOut",
-                    duration: 0.4,
-                    delay: 0.7,
-                }}
-            >
-                <Paragraph>
-                    Frontend developer
-                    <motion.span
-                        className="ml-2"
-                        initial={{ y: 20, opacity: 1 }}
-                        animate={{ y: 0, opacity: 0.5 }}
-                        transition={{
-                            ease: "easeInOut",
-                            duration: 0.4,
-                            delay: 1.2,
-                        }}
-                    >
-                        turning complex ideas into clean, responsive interfaces
-                        with React, Next.js, and TypeScript. I love smooth UIs,
-                        smart components, and the occasional well-timed
-                        animation.
-                    </motion.span>
-                </Paragraph>
-            </motion.div>
-            {/* spacer */}
-            <Spacer />
-
-            {/* horizontal scroll */}
-            <div className="project-scroll flex flex-row w-screen overflow-x-scroll gap-[26px] -mx-0 md:-mx-[80px] lg:-mx-[240px] px-0 md:px-[80px] lg:px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                {/* Project card */}
+            <div className="flex flex-col">
+                {/* spacer  */}
+                <div className="min-h-[120px] md:min-h-[272px] w-full bg-red-900/0" />
                 <motion.div
-                    initial={{ scale: 0.95, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
                     transition={{
                         ease: "easeInOut",
                         duration: 0.4,
                         delay: 0.7,
                     }}
                 >
-                    <ProjectCard
-                        title="Weekwise"
-                        description="Weekly planner with an intuitive interface and a focus on simplicity and ease of use."
-                        className=""
-                        imageUrl="/weekwise-thumbnail.png"
-                        liveUrl="https://www.google.com"
-                        githubUrl="https://github.com/shubhdeep-sarkar/weekwise"
-                        technologies={[
-                            "React",
-                            "Next.js",
-                            "TypeScript",
-                            "Supabase",
-                            "Tailwind CSS",
-                            "shadcn/ui",
-                            "Radix UI",
-                            "Motion",
-                        ]}
-                    />
+                    <Paragraph>
+                        Frontend developer
+                        <motion.span
+                            className="ml-2"
+                            initial={{ y: 20, opacity: 1 }}
+                            animate={{ y: 0, opacity: 0.5 }}
+                            transition={{
+                                ease: "easeInOut",
+                                duration: 0.4,
+                                delay: 1.2,
+                            }}
+                        >
+                            turning complex ideas into clean, responsive
+                            interfaces with React, Next.js, and TypeScript. I
+                            love smooth UIs, smart components, and the
+                            occasional well-timed animation.
+                        </motion.span>
+                    </Paragraph>
                 </motion.div>
+                {/* spacer */}
+                <Spacer />
+
+                {/* horizontal scroll */}
+                <div className="project-scroll flex flex-row w-screen overflow-x-scroll gap-[26px] -mx-0 md:-mx-[80px] lg:-mx-[240px] px-0 md:px-[80px] lg:px-[240px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    {/* Project card */}
+                    <motion.div
+                        initial={{ scale: 0.95, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                            ease: "easeInOut",
+                            duration: 0.4,
+                            delay: 0.7,
+                        }}
+                    >
+                        <ProjectCard
+                            title="Weekwise"
+                            description="Weekly planner with an intuitive interface and a focus on simplicity and ease of use."
+                            className=""
+                            imageUrl="/projects-images/weekwise/weekwise-thumbnail.png"
+                            githubUrl="https://github.com/SarkarShubhdeep/weekwise_v2.git"
+                            technologies={[
+                                "React",
+                                "Next.js",
+                                "TypeScript",
+                                "Supabase",
+                                "Tailwind CSS",
+                                "shadcn/ui",
+                                "Radix UI",
+                                "Motion",
+                            ]}
+                            primaryButtonText="View Project"
+                            primaryOnClick={() => {
+                                setActiveProjectOverlay("weekwise");
+                            }}
+                        />
+                    </motion.div>
+                    <motion.div
+                        initial={{ scale: 0.95, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                            ease: "easeInOut",
+                            duration: 0.4,
+                            delay: 0.8,
+                        }}
+                    >
+                        <ProjectCard
+                            title="Habitat"
+                            description="UX/UI Independent Study Project for residential property management."
+                            imageUrl="/projects-images/habitat/habitat-thumbnail.png"
+                            technologies={[
+                                "UI/UX Design",
+                                "Figma",
+                                "Adobe Illustrator",
+                                "Wireframing",
+                                "Prototyping",
+                                "User Research",
+                                "User Persona & Journey",
+                            ]}
+                            primaryButtonText="View Project"
+                            primaryOnClick={() => {
+                                setActiveProjectOverlay("habitat");
+                            }}
+                        />
+                    </motion.div>
+                    <motion.div
+                        initial={{ scale: 0.95, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                            ease: "easeInOut",
+                            duration: 0.4,
+                            delay: 0.9,
+                        }}
+                    >
+                        <ProjectCard
+                            title="Momentum"
+                            description="Todo app with focus mode, and a dashboard to track your progress."
+                            imageUrl="/projects-images/momentum/momentum-project-temp.png"
+                            technologies={[
+                                "React",
+                                "Next.js",
+                                "TypeScript",
+                                "Supabase",
+                                "Tailwind CSS",
+                                "shadcn/ui",
+                                "Radix UI",
+                                "Motion",
+                                "Visx Charts",
+                            ]}
+                            primaryButtonText="View Project"
+                            primaryOnClick={() => {
+                                setActiveProjectOverlay("momentum");
+                            }}
+                        />
+                    </motion.div>
+                    <motion.div
+                        initial={{ scale: 0.95, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                            ease: "easeInOut",
+                            duration: 0.4,
+                            delay: 0.9,
+                        }}
+                    >
+                        <ProjectCard
+                            title="Count"
+                            description="Todo app with focus mode, and a dashboard to track your progress."
+                            imageUrl="/projects-images/count/count-project-temp.png"
+                            technologies={[
+                                "React",
+                                "Next.js",
+                                "TypeScript",
+                                "Supabase",
+                                "Tailwind CSS",
+                                "shadcn/ui",
+                                "Radix UI",
+                                "Motion",
+                                "Visx Charts",
+                            ]}
+                            primaryButtonText="View Project"
+                            primaryOnClick={() => {
+                                setActiveProjectOverlay("count");
+                            }}
+                        />
+                    </motion.div>
+                </div>
+                {/* Project Carousel Buttons */}
                 <motion.div
-                    initial={{ scale: 0.95, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{
                         ease: "easeInOut",
                         duration: 0.4,
-                        delay: 0.8,
+                        delay: 1,
                     }}
+                    className="flex gap-[26px] mt-[26px]"
                 >
-                    <ProjectCard
-                        title="Habitat"
-                        description="UX/UI Independent Study Project for residential property management."
-                        imageUrl="/habitat-thumbnail.png"
-                        liveUrl="https://www.google.com"
-                        technologies={[
-                            "UI/UX Design",
-                            "Figma",
-                            "Adobe Illustrator",
-                            "Wireframing",
-                            "Prototyping",
-                            "User Research",
-                            "User Persona & Journey",
-                        ]}
-                        primaryButtonText="View Project"
-                    />
-                </motion.div>
-                <motion.div
-                    initial={{ scale: 0.95, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{
-                        ease: "easeInOut",
-                        duration: 0.4,
-                        delay: 0.9,
-                    }}
-                >
-                    <ProjectCard
-                        title="Momemtum"
-                        description="Todo app with focus mode, and a dashboard to track your progress."
-                        imageUrl="/card-temp-bg-pattern.png"
-                        liveUrl="https://www.google.com"
-                        githubUrl="https://github.com/shubhdeep-sarkar/momentum"
-                        technologies={[
-                            "React",
-                            "Next.js",
-                            "TypeScript",
-                            "Supabase",
-                            "Tailwind CSS",
-                            "shadcn/ui",
-                            "Radix UI",
-                            "Motion",
-                            "Visx Charts",
-                        ]}
-                    />
-                </motion.div>
-            </div>
-            {/* Project Carousel Buttons */}
-            <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                    ease: "easeInOut",
-                    duration: 0.4,
-                    delay: 1,
-                }}
-                className="flex gap-[26px] mt-[26px]"
-            >
-                <button
-                    onClick={() => {
-                        const scrollContainer =
-                            document.querySelector(".project-scroll");
-                        if (scrollContainer) {
-                            scrollContainer.scrollBy({
-                                left: -526,
-                                behavior: "smooth",
-                            });
-                        }
-                    }}
-                    className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group cursor-pointer hover:bg-accent hover:text-background"
-                >
-                    <Image
-                        src="/arrowleft-dark.svg"
-                        alt="arrowleft"
-                        width={20}
-                        height={20}
-                        className="group-hover:-translate-x-2 transition-all duration-150 group-hover:hidden"
-                    />
-                    <Image
-                        src="/arrowleft-light.svg"
-                        alt="arrowleft"
-                        width={20}
-                        height={20}
-                        className="hidden group-hover:block group-hover:-translate-x-2 transition-all duration-150"
-                    />
-                </button>
-
-                <button
-                    onClick={() => {
-                        const scrollContainer =
-                            document.querySelector(".project-scroll");
-                        if (scrollContainer) {
-                            scrollContainer.scrollBy({
-                                left: 526,
-                                behavior: "smooth",
-                            });
-                        }
-                    }}
-                    className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group cursor-pointer hover:bg-accent hover:text-background"
-                >
-                    <Image
-                        src="/arrowright-dark.svg"
-                        alt="arrowright"
-                        width={20}
-                        height={20}
-                        className="group-hover:translate-x-2 transition-all duration-150 group-hover:hidden"
-                    />
-                    <Image
-                        src="/arrowright-light.svg"
-                        alt="arrowright"
-                        width={20}
-                        height={20}
-                        className="hidden group-hover:block group-hover:translate-x-2 transition-all duration-150"
-                    />
-                </button>
-            </motion.div>
-
-            {/* about me */}
-            <Spacer />
-            <div id="about-section" />
-            <motion.div
-                initial={{ y: 80, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                    ease: "easeInOut",
-                    duration: 0.4,
-                }}
-            >
-                <Paragraph className="opacity-50">
-                    I&apos;ve always been drawn to visual design — it&apos;s
-                    been a consistent thread throughout my work. Most of my
-                    projects have involved shaping user-facing interfaces, where
-                    I blend aesthetic clarity with functional thinking. I&apos;m
-                    comfortable working across multiple languages and tools, and
-                    I&apos;m always learning something new to push my skills
-                    further.
-                </Paragraph>
-            </motion.div>
-
-            {/* Tech stack */}
-            <div className="grid lg:grid-cols-2 grid-cols-1 h-fit w-full mt-[128px] gap-[40px]">
-                {skillGroups.map((group, groupIndex) => (
-                    <div
-                        key={groupIndex}
-                        className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit"
-                    >
-                        <div className="flex-1 text-2xl px-[26px]">
-                            {group.title}
-                        </div>
-                        <div className="flex flex-wrap">
-                            {group.skills
-                                .slice(
-                                    0,
-                                    expandedGroups.includes(groupIndex) ||
-                                        isLargeScreen
-                                        ? group.skills.length
-                                        : 6
-                                )
-                                .map((skill) => (
-                                    <div
-                                        key={skill.name}
-                                        className="px-[26px] py-[16px] transition-all duration-150"
-                                        style={{
-                                            backgroundColor: `rgba(107, 114, 128, ${
-                                                skill.bgTransparency / 100
-                                            })`,
-                                            color: "inherit",
-                                        }}
-                                    >
-                                        {skill.name}
-                                    </div>
-                                ))}
-                        </div>
-                        {/* Show more/less button for md and smaller screens */}
-                        {group.skills.length > 6 && (
-                            <button
-                                onClick={() => toggleGroup(groupIndex)}
-                                className="px-[26px] py-[10px] w-fit  text-accent hover:text-white transition-all duration-150 text-sm font-sofia-sans-medium lg:hidden cursor-pointer"
-                            >
-                                {expandedGroups.includes(groupIndex)
-                                    ? "Show Less"
-                                    : `Show ${group.skills.length - 6} More`}
-                            </button>
-                        )}
-                    </div>
-                ))}
-            </div>
-
-            {/* Idealogy of the work */}
-            <div className="h-fit w-full px-[26px] text-3xl  mt-[128px] max-w-[800px] font-sofia-sans-regular ">
-                <span className="opacity-50">
-                    Creating the most stunning design or writing the perfect
-                    piece of code has never been my goal. Over time,
-                </span>
-                <span className="ms-2 font-sofia-sans-medium">
-                    I&apos;ve learned that being practical means writing code
-                    that delivers robust functionality and designing visuals
-                    that are meaningful
-                </span>
-                <span className="opacity-50">
-                    —not just aesthetically pleasing. That&apos;s where the real
-                    value lies.
-                </span>
-            </div>
-
-            <Spacer />
-
-            {/* </div> */}
-            {/* Contact */}
-
-            {/* Footer */}
-            <div
-                className="w-screen h-screen bg-[#D54B1C] -mx-0 md:-mx-[80px] lg:-mx-[240px] relative px-0 md:px-[80px] lg:px-[240px] flex flex-col items-start justify-end "
-                id="contact-section"
-            >
-                <motion.div
-                    initial={{ x: 100, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    viewport={{ amount: 0.1 }}
-                    transition={{
-                        ease: "easeInOut",
-                        duration: 0.6,
-                        delay: 0.2,
-                    }}
-                    className="flex w-full  pb-[20px]"
-                >
-                    <motion.div
-                        initial={{ x: 50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        viewport={{ amount: 0.1 }}
-                        transition={{
-                            ease: "easeInOut",
-                            duration: 0.5,
-                            delay: 0.3,
+                    <button
+                        onClick={() => {
+                            const scrollContainer =
+                                document.querySelector(".project-scroll");
+                            if (scrollContainer) {
+                                scrollContainer.scrollBy({
+                                    left: -526,
+                                    behavior: "smooth",
+                                });
+                            }
                         }}
+                        className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group cursor-pointer hover:bg-accent hover:text-background"
                     >
                         <Image
-                            src="/graphic-slash.svg"
-                            alt="footer-graphic"
-                            width={100}
-                            height={100}
-                            className="w-[80px] h-[60px]"
+                            src="/arrowleft-dark.svg"
+                            alt="arrowleft"
+                            width={20}
+                            height={20}
+                            className="group-hover:-translate-x-2 transition-all duration-150 group-hover:hidden"
                         />
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: 50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        viewport={{ amount: 0.1 }}
-                        transition={{
-                            ease: "easeInOut",
-                            duration: 0.5,
-                            delay: 0.4,
+                        <Image
+                            src="/arrowleft-light.svg"
+                            alt="arrowleft"
+                            width={20}
+                            height={20}
+                            className="hidden group-hover:block group-hover:-translate-x-2 transition-all duration-150"
+                        />
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            const scrollContainer =
+                                document.querySelector(".project-scroll");
+                            if (scrollContainer) {
+                                scrollContainer.scrollBy({
+                                    left: 526,
+                                    behavior: "smooth",
+                                });
+                            }
                         }}
+                        className="px-[26px] h-[60px] bg-foreground/10 transition-all duration-150 group cursor-pointer hover:bg-accent hover:text-background"
                     >
                         <Image
-                            src="/graphic-slash.svg"
-                            alt="footer-graphic"
-                            width={100}
-                            height={100}
-                            className="w-[60px] h-[60px] translate-x-[-40px]"
+                            src="/arrowright-dark.svg"
+                            alt="arrowright"
+                            width={20}
+                            height={20}
+                            className="group-hover:translate-x-2 transition-all duration-150 group-hover:hidden"
                         />
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: 50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        viewport={{ amount: 0.1 }}
-                        transition={{
-                            ease: "easeInOut",
-                            duration: 0.5,
-                            delay: 0.5,
-                        }}
-                    >
                         <Image
-                            src="/graphic-arrow.svg"
-                            alt="footer-graphic"
-                            width={100}
-                            height={100}
-                            className="h-[60px] translate-x-[-75px]"
+                            src="/arrowright-light.svg"
+                            alt="arrowright"
+                            width={20}
+                            height={20}
+                            className="hidden group-hover:block group-hover:translate-x-2 transition-all duration-150"
                         />
-                    </motion.div>
+                    </button>
                 </motion.div>
 
+                {/* about me */}
+                <Spacer />
+                <div id="about-section" />
                 <motion.div
                     initial={{ y: 80, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
@@ -414,72 +294,248 @@ export default function Home() {
                         duration: 0.4,
                     }}
                 >
-                    <div className="flex flex-col gap-[18px]">
-                        <Paragraph className="font-sofia-sans-medium text-background">
-                            LET&apos;S CONNECT{" "}
-                        </Paragraph>
-                        <Paragraph className="opacity-70 text-background">
-                            I&apos;m always looking for new opportunities to
-                            collaborate and learn. Feel free to reach out to me
-                            via email or connect on LinkedIn.
-                        </Paragraph>
-                    </div>
+                    <Paragraph className="opacity-50">
+                        I&apos;ve always been drawn to visual design — it&apos;s
+                        been a consistent thread throughout my work. Most of my
+                        projects have involved shaping user-facing interfaces,
+                        where I blend aesthetic clarity with functional
+                        thinking. I&apos;m comfortable working across multiple
+                        languages and tools, and I&apos;m always learning
+                        something new to push my skills further.
+                    </Paragraph>
                 </motion.div>
 
-                <div className="flex flex-wrap w-full sm:gap-[26px] mt-[26px]  text-lg font-clash-grotesk-medium">
-                    <FocusButton
-                        href="mailto:sarkarshubhdeep2@gmail.com"
-                        className="flex flex-row items-center justify-center text-foreground gap-[26px] bg-background px-[26px] py-[16px] h-[60px] hover:bg-transparent hover:text-background transition-all duration-150"
-                    >
-                        sarkarshubhdeep2@gmail.com
-                    </FocusButton>
-                    {/* linkedin */}
-                    <FocusButton
-                        href="https://www.linkedin.com/in/shubhdeep-sarkar-0000000000/"
-                        className="group flex flex-row items-center justify-center gap-[26px] bg-background/60 px-[26px] h-[60px] hover:bg-transparent hover:text-background transition-all duration-150"
-                    >
-                        <Image
-                            src="/linkedinicon-dark.svg"
-                            alt="linkedin"
-                            width={30}
-                            height={30}
-                            className="group-hover:invert"
-                        />
-                    </FocusButton>
-                    {/* Github */}
-                    <FocusButton
-                        href="https://github.com/shubhdeep-sarkar"
-                        className="group flex flex-row items-center justify-center gap-[26px] bg-background/60 px-[26px] h-[60px] hover:bg-transparent hover:text-background transition-all duration-150"
-                    >
-                        <Image
-                            src="/githubicon-dark.svg"
-                            alt="linkedin"
-                            width={30}
-                            height={30}
-                            className="group-hover:invert"
-                        />
-                    </FocusButton>
+                {/* Tech stack */}
+                <div className="grid lg:grid-cols-2 grid-cols-1 h-fit w-full mt-[128px] gap-[40px]">
+                    {skillGroups.map((group, groupIndex) => (
+                        <div
+                            key={groupIndex}
+                            className="flex flex-col gap-[18px] w-full uppercase font-sofia-sans-medium h-fit"
+                        >
+                            <div className="flex-1 text-2xl px-[26px]">
+                                {group.title}
+                            </div>
+                            <div className="flex flex-wrap">
+                                {group.skills
+                                    .slice(
+                                        0,
+                                        expandedGroups.includes(groupIndex) ||
+                                            isLargeScreen
+                                            ? group.skills.length
+                                            : 6
+                                    )
+                                    .map((skill) => (
+                                        <div
+                                            key={skill.name}
+                                            className="px-[26px] py-[16px] transition-all duration-150"
+                                            style={{
+                                                backgroundColor: `rgba(107, 114, 128, ${
+                                                    skill.bgTransparency / 100
+                                                })`,
+                                                color: "inherit",
+                                            }}
+                                        >
+                                            {skill.name}
+                                        </div>
+                                    ))}
+                            </div>
+                            {/* Show more/less button for md and smaller screens */}
+                            {group.skills.length > 6 && (
+                                <button
+                                    onClick={() => toggleGroup(groupIndex)}
+                                    className="px-[26px] py-[10px] w-fit  text-accent hover:text-white transition-all duration-150 text-sm font-sofia-sans-medium lg:hidden cursor-pointer"
+                                >
+                                    {expandedGroups.includes(groupIndex)
+                                        ? "Show Less"
+                                        : `Show ${
+                                              group.skills.length - 6
+                                          } More`}
+                                </button>
+                            )}
+                        </div>
+                    ))}
                 </div>
 
-                {/* Logo Image */}
-                <motion.div
-                    style={{ y: footerLogoY, opacity: footerLogoOpacity }}
-                    className="flex flex-row w-full gap-[26px] mt-[128px]"
-                >
-                    <Image
-                        src="/footer-graphic.svg"
-                        alt="logo"
-                        width={100}
-                        height={100}
-                        className="w-full"
-                    />
-                </motion.div>
+                {/* Idealogy of the work */}
+                <div className="h-fit w-full px-[26px] text-3xl  mt-[128px] max-w-[800px] font-sofia-sans-regular ">
+                    <span className="opacity-50">
+                        Creating the most stunning design or writing the perfect
+                        piece of code has never been my goal. Over time,
+                    </span>
+                    <span className="ms-2 font-sofia-sans-medium">
+                        I&apos;ve learned that being practical means writing
+                        code that delivers robust functionality and designing
+                        visuals that are meaningful
+                    </span>
+                    <span className="opacity-50">
+                        —not just aesthetically pleasing. That&apos;s where the
+                        real value lies.
+                    </span>
+                </div>
+
+                <Spacer />
+
+                {/* </div> */}
+                {/* Contact */}
 
                 {/* Footer */}
-                <div className="h-[80px] w-full flex items-center justify-center font-sofia-sans-regular opacity text-background">
-                    Copyright © 2025 Shubhdeep Sarkar
+                <div
+                    className="w-screen h-screen bg-[#D54B1C] -mx-0 md:-mx-[80px] lg:-mx-[240px] relative px-0 md:px-[80px] lg:px-[240px] flex flex-col items-start justify-end "
+                    id="contact-section"
+                >
+                    <motion.div
+                        initial={{ x: 100, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        viewport={{ amount: 0.1 }}
+                        transition={{
+                            ease: "easeInOut",
+                            duration: 0.6,
+                            delay: 0.2,
+                        }}
+                        className="flex w-full  pb-[20px]"
+                    >
+                        <motion.div
+                            initial={{ x: 50, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            viewport={{ amount: 0.1 }}
+                            transition={{
+                                ease: "easeInOut",
+                                duration: 0.5,
+                                delay: 0.3,
+                            }}
+                        >
+                            <Image
+                                src="/graphic-slash.svg"
+                                alt="footer-graphic"
+                                width={100}
+                                height={100}
+                                className="w-[80px] h-[60px]"
+                            />
+                        </motion.div>
+                        <motion.div
+                            initial={{ x: 50, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            viewport={{ amount: 0.1 }}
+                            transition={{
+                                ease: "easeInOut",
+                                duration: 0.5,
+                                delay: 0.4,
+                            }}
+                        >
+                            <Image
+                                src="/graphic-slash.svg"
+                                alt="footer-graphic"
+                                width={100}
+                                height={100}
+                                className="w-[60px] h-[60px] translate-x-[-40px]"
+                            />
+                        </motion.div>
+                        <motion.div
+                            initial={{ x: 50, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            viewport={{ amount: 0.1 }}
+                            transition={{
+                                ease: "easeInOut",
+                                duration: 0.5,
+                                delay: 0.5,
+                            }}
+                        >
+                            <Image
+                                src="/graphic-arrow.svg"
+                                alt="footer-graphic"
+                                width={100}
+                                height={100}
+                                className="h-[60px] translate-x-[-75px]"
+                            />
+                        </motion.div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ y: 80, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                            ease: "easeInOut",
+                            duration: 0.4,
+                        }}
+                    >
+                        <div className="flex flex-col gap-[18px]">
+                            <Paragraph className="font-sofia-sans-medium text-background">
+                                LET&apos;S CONNECT{" "}
+                            </Paragraph>
+                            <Paragraph className="opacity-70 text-background">
+                                I&apos;m always looking for new opportunities to
+                                collaborate and learn. Feel free to reach out to
+                                me via email or connect on LinkedIn.
+                            </Paragraph>
+                        </div>
+                    </motion.div>
+
+                    <div className="flex flex-wrap w-full sm:gap-[26px] mt-[26px]  text-lg font-clash-grotesk-medium">
+                        <FocusButton
+                            href="mailto:sarkarshubhdeep2@gmail.com"
+                            className="flex flex-row items-center justify-center text-foreground gap-[26px] bg-background px-[26px] py-[16px] h-[60px] hover:bg-transparent hover:text-background transition-all duration-150"
+                        >
+                            sarkarshubhdeep2@gmail.com
+                        </FocusButton>
+                        {/* linkedin */}
+                        <FocusButton
+                            href="https://www.linkedin.com/in/shubhdeep-sarkar-0000000000/"
+                            className="group flex flex-row items-center justify-center gap-[26px] bg-background/60 px-[26px] h-[60px] hover:bg-transparent hover:text-background transition-all duration-150"
+                        >
+                            <Image
+                                src="/linkedinicon-dark.svg"
+                                alt="linkedin"
+                                width={30}
+                                height={30}
+                                className="group-hover:invert"
+                            />
+                        </FocusButton>
+                        {/* Github */}
+                        <FocusButton
+                            href="https://github.com/shubhdeep-sarkar"
+                            className="group flex flex-row items-center justify-center gap-[26px] bg-background/60 px-[26px] h-[60px] hover:bg-transparent hover:text-background transition-all duration-150"
+                        >
+                            <Image
+                                src="/githubicon-dark.svg"
+                                alt="linkedin"
+                                width={30}
+                                height={30}
+                                className="group-hover:invert"
+                            />
+                        </FocusButton>
+                    </div>
+
+                    {/* Logo Image */}
+                    <motion.div
+                        style={{ y: footerLogoY, opacity: footerLogoOpacity }}
+                        className="flex flex-row w-full gap-[26px] mt-[128px]"
+                    >
+                        <Image
+                            src="/footer-graphic.svg"
+                            alt="logo"
+                            width={100}
+                            height={100}
+                            className="w-full"
+                        />
+                    </motion.div>
+
+                    {/* Footer */}
+                    <div className="h-[80px] w-full flex items-center justify-center font-sofia-sans-regular opacity text-background">
+                        Copyright © 2025 Shubhdeep Sarkar
+                    </div>
                 </div>
             </div>
+
+            {/* Project Overlay */}
+            <ProjectOverlay
+                isOpen={activeProjectOverlay !== null}
+                onClose={() => setActiveProjectOverlay(null)}
+                currentProject={activeProjectOverlay || undefined}
+                onProjectChange={(project: string) =>
+                    setActiveProjectOverlay(project)
+                }
+            />
         </div>
     );
 }
