@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import ProjectsNav from "./ProjectsNav";
 import WeekwiseContent from "./WeekwiseContent";
+import HabitatContent from "./HabitatContent";
 
 interface ProjectOverlayProps {
     isOpen: boolean;
@@ -87,6 +88,8 @@ export default function ProjectOverlay({
                                 {children ||
                                     (currentProject === "weekwise" ? (
                                         <WeekwiseContent />
+                                    ) : currentProject === "habitat" ? (
+                                        <HabitatContent />
                                     ) : (
                                         <div className="min-h-[80vh] flex items-center justify-center">
                                             <div className="text-center">

@@ -7,7 +7,7 @@ interface ProjectCardProps {
     description: string;
     technologies: string[];
     imageUrl?: string;
-    liveUrl?: string;
+
     githubUrl?: string;
     className?: string;
     primaryButtonText?: string;
@@ -23,7 +23,7 @@ export default function ProjectCard({
     primaryButtonText = "Live Demo",
     technologies,
     imageUrl,
-    liveUrl,
+
     githubUrl,
     className = "",
     primaryOnClick,

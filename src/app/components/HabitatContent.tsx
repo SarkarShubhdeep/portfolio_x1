@@ -3,16 +3,16 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 
-export default function WeekwiseContent() {
+export default function HabitatContent() {
     const technologies = [
         "React",
         "Next.js",
         "TypeScript",
-        "Supabase",
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
         "Tailwind CSS",
         "shadcn/ui",
-        "Radix UI",
-        "Motion",
     ];
 
     const backgroundColors = [
@@ -38,13 +38,9 @@ export default function WeekwiseContent() {
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     className="space-y-6"
                 >
-                    <Image
-                        src="/projects-images/weekwise/weekwise-logo.svg"
-                        alt="Weekwise Project Screenshot"
-                        width={100}
-                        height={100}
-                        className="w-60 object-contain invert"
-                    />
+                    <h1 className="text-6xl font-clash-grotesk-medium">
+                        Habitat
+                    </h1>
                 </motion.div>
                 <button className="bg-blue-500 items-center justify-center flex h-12 w-12 rounded-full">
                     <Image
@@ -64,11 +60,11 @@ export default function WeekwiseContent() {
                 className="relative -mx-6 md:-mx-20 lg:-mx-60 rounded-lg overflow-hidden"
             >
                 <Image
-                    src="/projects-images/weekwise/weekwise-hero-image.png"
-                    alt="Weekwise Project Screenshot"
+                    src="/projects-images/habitat/habitat-thumbnail.png"
+                    alt="Habitat Project Screenshot"
                     width={1000}
-                    height={100}
-                    className="w-7xl h-full object-cover mx-auto"
+                    height={600}
+                    className="w-full h-full object-cover mx-auto"
                 />
             </motion.div>
 
@@ -85,16 +81,18 @@ export default function WeekwiseContent() {
                     </h2>
                     <div className="text-foreground/80 font-sofia-sans-regular space-y-4 leading-relaxed">
                         <p>
-                            Weekwise is a minimalist weekly planning application
-                            designed to help users organize their tasks and
-                            schedule efficiently. The project focuses on
-                            delivering a clean, intuitive interface that
-                            prioritizes usability and simplicity.
+                            Habitat is a comprehensive platform designed to help
+                            users discover, track, and cultivate healthy
+                            lifestyle habits. The application focuses on
+                            creating sustainable behavioral changes through
+                            data-driven insights and personalized
+                            recommendations.
                         </p>
                         <p>
-                            Built with modern tech stack. The application
-                            integrates with Supabase for real-time data
-                            synchronization and user authentication.
+                            Built with a modern full-stack architecture, Habitat
+                            combines an intuitive React frontend with a robust
+                            Python backend, providing users with real-time habit
+                            tracking and detailed analytics.
                         </p>
                     </div>
                 </div>
@@ -107,24 +105,27 @@ export default function WeekwiseContent() {
                     <ul className="grid md:grid-cols-2 gap-3 text-foreground/80 font-sofia-sans-regular">
                         <li className="flex items-start gap-3">
                             <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
-                            Weekly view with drag-and-drop functionality
+                            Personalized habit tracking dashboard
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
-                            Real-time data synchronization
-                        </li>
-
-                        <li className="flex items-start gap-3">
-                            <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
-                            Clean, minimalist interface
+                            Data visualization and analytics
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
-                            User authentication and profiles
+                            Goal setting and progress tracking
                         </li>
                         <li className="flex items-start gap-3">
                             <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
-                            Smooth animations and transitions
+                            Social features and community support
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
+                            RESTful API with comprehensive endpoints
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
+                            Responsive design across all devices
                         </li>
                     </ul>
                 </div>
@@ -163,8 +164,7 @@ export default function WeekwiseContent() {
                 </div>
             </motion.div>
 
-            {/* Project Screenshots */}
-            {/* Project Image */}
+            {/* Additional Project Screenshot */}
             <motion.div
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -173,27 +173,11 @@ export default function WeekwiseContent() {
                 className="relative -mx-6 md:-mx-20 lg:-mx-60 rounded-lg overflow-hidden"
             >
                 <Image
-                    src="/projects-images/weekwise/weekwise-dashboard.png"
-                    alt="Weekwise Project Screenshot"
+                    src="/projects-images/habitat/light.png"
+                    alt="Habitat Project Light Mode"
                     width={1000}
-                    height={100}
-                    className="w-7xl h-full object-cover mx-auto"
-                />
-            </motion.div>
-
-            <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.25, ease: "easeOut", delay: 0.1 }}
-                className="relative -mx-6 md:-mx-20 lg:-mx-60 rounded-lg overflow-hidden"
-            >
-                <Image
-                    src="/projects-images/weekwise/weekwise-weekview.png"
-                    alt="Weekwise Project Screenshot"
-                    width={1000}
-                    height={100}
-                    className="w-7xl h-full object-cover mx-auto"
+                    height={600}
+                    className="w-full h-full object-cover mx-auto"
                 />
             </motion.div>
 
