@@ -164,6 +164,40 @@ export default function WeekwiseContent() {
                 </div>
             </motion.div>
 
+            {/* Project Screenshots */}
+            {/* Project Image */}
+            <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.25, ease: "easeOut", delay: 0.1 }}
+                className="relative -mx-6 md:-mx-20 lg:-mx-60 rounded-lg overflow-hidden"
+            >
+                <Image
+                    src="/projects-images/weekwise/weekwise-dashboard.png"
+                    alt="Weekwise Project Screenshot"
+                    width={1000}
+                    height={100}
+                    className="w-7xl h-full object-cover mx-auto"
+                />
+            </motion.div>
+
+            <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.25, ease: "easeOut", delay: 0.1 }}
+                className="relative -mx-6 md:-mx-20 lg:-mx-60 rounded-lg overflow-hidden"
+            >
+                <Image
+                    src="/projects-images/weekwise/weekwise-weekview.png"
+                    alt="Weekwise Project Screenshot"
+                    width={1000}
+                    height={100}
+                    className="w-7xl h-full object-cover mx-auto"
+                />
+            </motion.div>
+
             {/* Bottom Spacing */}
             <div className="h-16" />
         </div>
