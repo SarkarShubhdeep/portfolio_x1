@@ -2,8 +2,23 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function HabitatContent() {
+    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+    const [isMediumScreen, setIsMediumScreen] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMediumScreen(window.innerWidth >= 768);
+        };
+
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
+
+        return () => window.removeEventListener("resize", checkScreenSize);
+    }, []);
+
     const technologies = [
         "Figma",
         "Rive",
@@ -19,11 +34,30 @@ export default function HabitatContent() {
         "bg-neutral-900/90",
     ];
 
+    const videos = [
+        "onboarding_ready.mp4",
+        "onboarding_ready.mp4", // Placeholder - replace with actual video names
+        "onboarding_ready.mp4", // Placeholder - replace with actual video names
+        "onboarding_ready.mp4", // Placeholder - replace with actual video names
+        "onboarding_ready.mp4", // Placeholder - replace with actual video names
+        "onboarding_ready.mp4", // Placeholder - replace with actual video names
+    ];
+
     // Function to get a random background color
     const getRandomBgColor = () => {
         return backgroundColors[
             Math.floor(Math.random() * backgroundColors.length)
         ];
+    };
+
+    const nextVideo = () => {
+        setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
+    };
+
+    const prevVideo = () => {
+        setCurrentVideoIndex(
+            (prev) => (prev - 1 + videos.length) % videos.length
+        );
     };
 
     return (
@@ -98,7 +132,7 @@ export default function HabitatContent() {
                                     className=""
                                 >
                                     <div
-                                        className={`font-clash-grotesk-regular px-3 py-2 text-white ${getRandomBgColor()}`}
+                                        className={`font-clash-grotesk-regular px-3 text-base py-2 text-white ${getRandomBgColor()}`}
                                     >
                                         {tech}
                                     </div>
@@ -106,7 +140,7 @@ export default function HabitatContent() {
                             ))}
                         </div>
                         <button
-                            className="bg-accent text-light hover:text-background font-clash-grotesk-regular px-4 py-2 cursor-pointer flex items-center gap-2 group duration-150"
+                            className="bg-accent text-base text-light hover:text-background font-clash-grotesk-regular px-4 py-2 cursor-pointer flex items-center gap-2 group duration-150"
                             onClick={() => {
                                 console.log("scroll to gallery");
                             }}
@@ -114,11 +148,11 @@ export default function HabitatContent() {
                             <Image
                                 src="/arrowleft-dark.svg"
                                 alt="Arrow down"
-                                width={20}
-                                height={20}
+                                width={16}
+                                height={16}
                                 className="rotate-270 group-hover:invert transition-all duration-150"
                             />
-                            View Project
+                            View Gallery
                         </button>
                     </div>
                 </motion.div>
@@ -257,7 +291,74 @@ export default function HabitatContent() {
                 </h1>
             </div>
 
-            {/* Design Screens carousel slowly moving to the right and back */}
+            {/* Design Screens - Responsive Carousel */}
+            <div className="-mx-[calc(50vw-50%)] w-screen relative overflow-hidden mt-16">
+                {/* Large screens: Show all videos in a row */}
+                <div className="hidden lg:flex justify-start w-full">
+                    <motion.div className="flex gap-3 w-fit justify-start mx-auto">
+                        {videos.map((videoFile, index) => (
+                            <motion.div
+                                key={`${videoFile}-${index}`}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{
+                                    duration: 0.5,
+                                    ease: "easeOut",
+                                    delay: index * 0.1,
+                                }}
+                                className="flex-shrink-0 w-[280px] xl:w-[320px] 2xl:w-[360px] h-auto rounded-[54px] xl:rounded-[64px] overflow-hidden shadow-lg"
+                            >
+                                <video
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="w-full h-full object-cover"
+                                >
+                                    <source
+                                        src={`/projects-images/habitat/animated-screens/${videoFile}`}
+                                        type="video/mp4"
+                                    />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+
+                {/* Medium and smaller screens: Horizontal scroll */}
+                <div className="lg:hidden w-full overflow-x-auto scrollbar-hide">
+                    <motion.div className="flex gap-4 px-6 w-max">
+                        {videos.map((videoFile, index) => (
+                            <motion.div
+                                key={`${videoFile}-${index}`}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{
+                                    duration: 0.5,
+                                    ease: "easeOut",
+                                    delay: index * 0.1,
+                                }}
+                                className="flex-shrink-0 w-[280px] md:w-[320px] h-auto rounded-[54px] overflow-hidden shadow-lg"
+                            >
+                                <video
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="w-full h-full object-cover"
+                                >
+                                    <source
+                                        src={`/projects-images/habitat/animated-screens/${videoFile}`}
+                                        type="video/mp4"
+                                    />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </div>
 
             {/* Design System and Components */}
             <div className="w-full text-center mt-24">
