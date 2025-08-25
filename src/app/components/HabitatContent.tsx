@@ -2,23 +2,8 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 
 export default function HabitatContent() {
-    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-    const [isMediumScreen, setIsMediumScreen] = useState(false);
-
-    useEffect(() => {
-        const checkScreenSize = () => {
-            setIsMediumScreen(window.innerWidth >= 768);
-        };
-
-        checkScreenSize();
-        window.addEventListener("resize", checkScreenSize);
-
-        return () => window.removeEventListener("resize", checkScreenSize);
-    }, []);
-
     const technologies = [
         "Figma",
         "Rive",
@@ -47,16 +32,6 @@ export default function HabitatContent() {
         return backgroundColors[
             Math.floor(Math.random() * backgroundColors.length)
         ];
-    };
-
-    const nextVideo = () => {
-        setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
-    };
-
-    const prevVideo = () => {
-        setCurrentVideoIndex(
-            (prev) => (prev - 1 + videos.length) % videos.length
-        );
     };
 
     return (
@@ -206,8 +181,8 @@ export default function HabitatContent() {
                     Understanding comes first <br /> Figma can follow
                 </h1>
                 <p className="text-base text-foreground/80 font-sofia-sans-regular mt-6">
-                    The first step was to understand residents' everyday needs
-                    and frustrations. I shared{" "}
+                    The first step was to understand residents&apos; everyday
+                    needs and frustrations. I shared{" "}
                     <button
                         className="border border-foreground/20 px-3 mx-2 py-1 rounded-full  hover:bg-foreground/10 transition-colors inline-flex items-center gap-2"
                         onClick={() => {
@@ -238,8 +213,8 @@ export default function HabitatContent() {
                         User #1 says
                     </h2>
                     <h1 className=" text-xl font-clash-grotesk-medium">
-                        “Submitting maintenance requests through apps never
-                        feels reliable to me.. ”
+                        &ldquo;I just end up calling for everything—why bother
+                        using the app?&rdquo;
                     </h1>
                 </div>
                 <div className="flex flex-col text-left gap-2 bg-background/80 p-6 flex-1">
@@ -247,9 +222,9 @@ export default function HabitatContent() {
                         User #1 says
                     </h2>
                     <h1 className=" text-xl font-clash-grotesk-medium">
-                        “I use one app for payments, another portal for
+                        &ldquo;I use one app for payments, another portal for
                         maintenance, and then emails for community notices. Why
-                        do I need so many different tools?”
+                        do I need so many different tools?&rdquo;
                     </h1>
                 </div>
                 <div className="flex flex-col text-left gap-2 bg-background/80 p-6 flex-1">
@@ -257,8 +232,8 @@ export default function HabitatContent() {
                         User #1 says
                     </h2>
                     <h1 className=" text-xl font-clash-grotesk-medium">
-                        “I just end up calling for everything—why bother using
-                        the app?”
+                        &ldquo;I just end up calling for everything—why bother
+                        using the app?&rdquo;
                     </h1>
                 </div>
             </div>
