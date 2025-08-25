@@ -36,11 +36,10 @@ export default function HabitatContent() {
 
     const videos = [
         "onboarding_ready.mp4",
-        "onboarding_ready.mp4", // Placeholder - replace with actual video names
-        "onboarding_ready.mp4", // Placeholder - replace with actual video names
-        "onboarding_ready.mp4", // Placeholder - replace with actual video names
-        "onboarding_ready.mp4", // Placeholder - replace with actual video names
-        "onboarding_ready.mp4", // Placeholder - replace with actual video names
+        "home_and_menu.mp4",
+        "service_requests.mp4",
+        // "rent_payments.mp4",
+        // "community_connections.mp4",
     ];
 
     // Function to get a random background color
